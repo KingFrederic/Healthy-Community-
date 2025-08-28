@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Healthy Community — Health & Environment Outreach</title>
+  <title>Healthy Community — Care for People & Planet</title>
   <meta name="description" content="Healthy Community delivers free health screenings and environmental education to underserved communities." />
   <meta property="og:title" content="Healthy Community" />
   <meta property="og:description" content="Healthy lives and a sustainable planet for every community." />
@@ -11,217 +11,185 @@
   <meta name="theme-color" content="#F9FBFC" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial'] },
-          colors: {
-            brand: {
-              bg: '#145247',      // deep medical teal
-              card: '#103A37',    // darker teal for cards
-              gold: '#FAA805',    // accent amber from palette
-              soft: '#CDE0E4',    // light blue from palette
-              sand: '#E8D9C9'     // warm beige from palette
-            }
-          }
-          },
-          boxShadow: {
-            glow: '0 0 0 1px rgba(250,168,5,.25), 0 10px 30px rgba(250,168,5,.15)'
-          },
+          fontFamily: { sans: ['Inter','system-ui'], display:['Fraunces','serif'] },
+          colors: { brand: { teal:'#145247', amber:'#FAA805', blue:'#CDE0E4', beige:'#E8D9C9', ink:'#0E1116' } },
+          boxShadow: { glow:'0 0 0 1px rgba(250,168,5,.25), 0 10px 40px rgba(20,82,71,.18)' },
           keyframes: {
-            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
-            pulseSoft: { '0%': { opacity: .6 }, '50%': { opacity: 1 }, '100%': { opacity: .6 } }
+            float: { '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-12px)'} },
+            shimmer: { '0%':{backgroundPosition:'-200% 0'}, '100%':{backgroundPosition:'200% 0'} }
           },
-          animation: { float: 'float 8s ease-in-out infinite', pulseSoft: 'pulseSoft 6s ease-in-out infinite' }
+          animation: { float:'float 8s ease-in-out infinite', shimmer:'shimmer 2.2s linear infinite' }
         }
       }
     }
   </script>
 
   <style>
-    /* Light canvas background and WOW aurora */
-    body{background: radial-gradient(1200px 600px at -10% -10%, rgba(250,168,5,.05), transparent 60%), radial-gradient(1000px 600px at 110% -10%, rgba(205,224,228,.50), transparent 55%), linear-gradient(#F9FBFC,#F4F8FA);} 
-    .aurora{position:absolute; inset:-8% -6% auto -6%; height:540px; pointer-events:none; background: radial-gradient(600px 280px at 12% 20%, rgba(250,168,5,.08), transparent 60%), radial-gradient(600px 280px at 85% 20%, rgba(20,82,71,.06), transparent 60%), radial-gradient(600px 280px at 50% 95%, rgba(205,224,228,.32), transparent 60%); filter: blur(22px); animation: aurora 14s ease-in-out infinite alternate;} 
-    @keyframes aurora{0%{transform: translateY(0)}100%{transform: translateY(-18px)}}
-    .tilt{transition: transform .35s ease, box-shadow .35s ease;} .tilt:hover{transform: translateY(-6px); box-shadow: 0 22px 50px rgba(16,24,40,.12);} 
-    :root{ --brand:#145247; --gold:#FAA805; }
-    html { scroll-behavior: smooth; }
-    /* Glass */
-    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,.95); border: 1px solid rgba(203,213,225,1); }
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: all .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    /* Scroll progress bar */
-    #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0; z-index: 60; box-shadow: 0 0 12px rgba(250,168,5,.6); }
-    /* Hero animated orbs */
-    .orb { filter: blur(40px); opacity:.35; position:absolute; border-radius:999px; }
-    .orb-1 { width: 420px; height: 420px; background: radial-gradient(circle, #FAA805, rgba(250,168,5,.08)); top:-60px; left:-60px; }
-    .orb-2 { width: 360px; height: 360px; background: radial-gradient(circle, #CDE0E4, rgba(205,224,228,.06)); bottom: -80px; right: -60px; }
-    /* Lightbox */
-    .lightbox { position: fixed; inset:0; display:none; background: rgba(0,0,0,.85); z-index:70; align-items:center; justify-content:center; }
-    .lightbox.open { display:flex; }
-    .lightbox img{ max-width:92vw; max-height:88vh; border-radius:1rem; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
-    /* Button glow */
-    .btn-glow:hover { box-shadow: 0 0 0 1px rgba(250,168,5,.35), 0 12px 36px rgba(250,168,5,.28); }
-    /* Parallax */
-    .parallax { transform-style: preserve-3d; }
-    /* Hero slider */
-    .slider { position: relative; }
-    .slider-track { display:flex; width:100%; transition: transform .6s ease; }
-    .slide { min-width:100%; position:relative; }
-    .slider-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.9); border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:.5rem; display:grid; place-items:center; box-shadow: 0 10px 24px rgba(16,24,40,.12);} 
-    .slider-btn:hover{box-shadow:0 12px 28px rgba(16,24,40,.18)}
+    :root{ --bg:#F9FBFC; --teal:#145247; --amber:#FAA805; --blue:#CDE0E4; --beige:#E8D9C9; }
+    html{ scroll-behavior:smooth }
+    body{ background: radial-gradient(1200px 600px at -10% -10%, rgba(250,168,5,.06), transparent 60%), radial-gradient(900px 500px at 110% -10%, rgba(205,224,228,.35), transparent 55%), linear-gradient(#F9FBFC,#F4F8FA); color:#0e1116 }
+
+    /* Header */
+    .glass{ backdrop-filter: blur(12px); background: rgba(255,255,255,.82); border:1px solid rgba(203,213,225,.9) }
+
+    /* Cursor spotlight */
+    .spotlight{ position: fixed; inset:0; pointer-events:none; background: radial-gradient(220px 220px at var(--mx,50%) var(--my,50%), rgba(250,168,5,.13), transparent 60%); z-index: 20; mix-blend-mode:multiply }
+
+    /* Progress bar */
+    #progress{ position: fixed; top:0; left:0; height:3px; background: var(--amber); width:0; z-index:60; box-shadow:0 0 12px rgba(250,168,5,.6) }
+
+    /* Hero */
+    .hero-wrap{ position:relative; min-height: 92vh; }
+    .hero-orb{ position:absolute; border-radius:999px; filter:blur(40px); opacity:.35 }
+    .hero-orb.a{ width:520px; height:520px; background:radial-gradient(circle, var(--amber), rgba(250,168,5,.08)); top:-80px; left:-80px }
+    .hero-orb.b{ width:420px; height:420px; background:radial-gradient(circle, var(--blue), rgba(205,224,228,.06)); bottom:-80px; right:-60px }
+
+    /* Slider */
+    .slider{ position:relative; border-radius:28px; overflow:hidden }
+    .slider-track{ display:flex; transition: transform .6s ease }
+    .slide{ min-width:100%; position:relative }
+    .slider-btn{ position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:.55rem; display:grid; place-items:center; box-shadow:0 10px 24px rgba(16,24,40,.12) }
     .slider-btn.prev{ left:.75rem }
     .slider-btn.next{ right:.75rem }
-    .slider-dots{ position:absolute; bottom:.75rem; left:0; right:0; display:flex; justify-content:center; gap:.4rem; }
-    .dot{ width:9px; height:9px; border-radius:999px; background:rgba(20,82,71,.35); border:1px solid rgba(0,0,0,.06); opacity:.6; }
-    .dot.opacity-100{ opacity:1; background:#FAA805; }
-  </style>
+    .slider-dots{ position:absolute; bottom:.8rem; left:0; right:0; display:flex; justify-content:center; gap:.45rem }
+    .dot{ width:9px; height:9px; border-radius:999px; background:rgba(20,82,71,.35); border:1px solid rgba(0,0,0,.06); opacity:.7 }
+    .dot.active{ background:var(--amber); opacity:1 }
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "NGO",
-    "name": "Healthy Community",
-    "url": "https://example.org",
-    "missionStatement": "To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.",
-    "founder": "Bismark Dabuo",
-    "sameAs": [
-      "https://facebook.com/healthycommunity",
-      "https://instagram.com/healthycommunity"
-    ]
-  }
-  </script>
+    /* Particles */
+    #particles{ position:absolute; inset:0; z-index:0 }
+
+    /* Section dividers */
+    .curve{ position:relative; }
+    .curve:before{ content:""; position:absolute; inset:auto 0 -1px 0; height:140px; background: radial-gradient(70% 140px at 50% 0, rgba(20,82,71,.10), transparent 70%); pointer-events:none }
+
+    /* Sticky timeline */
+    .timeline{ position:relative }
+    .timeline:before{ content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background: linear-gradient(var(--teal), transparent) }
+    .tick{ position:sticky; top:88px }
+
+    /* Magnetic buttons */
+    .magnetic{ position:relative; overflow:hidden }
+    .magnetic span{ position:relative; z-index:2 }
+    .magnetic:after{ content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(250,168,5,.15), rgba(20,82,71,.15), rgba(250,168,5,.15)); background-size: 200% 100%; border-radius: inherit; z-index:1; opacity:0; transition: opacity .25s; }
+    .magnetic:hover:after{ opacity:1; animation: shimmer 2.2s linear infinite }
+
+    /* Cards */
+    .card{ background:#fff; border:1px solid rgba(226,232,240,1); border-radius:28px }
+
+    /* Lightbox */
+    .lightbox{ position:fixed; inset:0; display:none; background: rgba(0,0,0,.88); z-index:70; align-items:center; justify-content:center }
+    .lightbox.open{ display:flex }
+    .lightbox img{ max-width:92vw; max-height:88vh; border-radius:1rem; box-shadow:0 20px 60px rgba(0,0,0,.45) }
+
+    /* Command palette */
+    #cmd{ position: fixed; inset: 0; display:none; align-items: flex-start; justify-content: center; padding-top:12vh; background: rgba(14,17,22,.36); backdrop-filter: blur(6px); z-index:80 }
+    #cmd.open{ display:flex }
+  </style>
 </head>
-<body class="bg-[#F9FBFC] text-slate-900 font-sans">
+<body class="font-sans bg-[--bg] text-[--ink]">
   <div id="progress"></div>
+  <div class="spotlight" aria-hidden="true"></div>
 
   <!-- Header -->
-  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all">
+  <header id="header" class="fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-7xl px-4">
-      <nav class="mt-4 mb-3 rounded-2xl glass flex items-center justify-between px-4 py-3">
+      <nav class="mt-4 rounded-2xl glass flex items-center justify-between px-4 py-3">
         <a href="#top" class="flex items-center gap-3">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FAA805] to-[#F1C14D] text-brand-bg font-extrabold">HC</span>
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[--teal] text-white font-extrabold">HC</span>
           <span class="text-lg font-bold tracking-tight">Healthy Community</span>
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-brand.gold">About</a>
-          <a href="#programs" class="hover:text-brand.gold">Programs</a>
-          <a href="#proof" class="hover:text-brand.gold">Proof</a>
-          <a href="#team" class="hover:text-brand.gold">Team</a>
-          <a href="#contact" class="hover:text-brand.gold">Contact</a>
-          <a href="#donate" class="inline-flex items-center gap-2 rounded-xl border border-[rgba(212,175,55,.3)] px-4 py-2 text-sm font-semibold text-brand.gold btn-glow">Donate</a>
+          <a href="#about" class="hover:text-[--teal]">About</a>
+          <a href="#programs" class="hover:text-[--teal]">Programs</a>
+          <a href="#proof" class="hover:text-[--teal]">Proof</a>
+          <a href="#team" class="hover:text-[--teal]">Team</a>
+          <a href="#contact" class="hover:text-[--teal]">Contact</a>
+          <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-4 py-2 text-sm font-semibold text-white shadow-glow"><span>Donate</span></a>
         </div>
         <button id="menuBtn" aria-label="Open Menu" class="md:hidden rounded-xl border border-slate-200 p-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </nav>
-      <div id="mobileMenu" class="md:hidden hidden glass rounded-2xl mx-1 px-4 py-3">
+      <div id="mobileMenu" class="md:hidden hidden glass rounded-2xl mx-1 mt-2 px-4 py-3">
         <div class="grid gap-3 text-sm">
           <a href="#about" class="py-2">About</a>
           <a href="#programs" class="py-2">Programs</a>
           <a href="#proof" class="py-2">Proof</a>
           <a href="#team" class="py-2">Team</a>
           <a href="#contact" class="py-2">Contact</a>
-          <a href="#donate" class="py-2 text-brand.gold font-semibold">Donate</a>
+          <a href="#donate" class="py-2 text-[--teal] font-semibold">Donate</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="top" class="relative overflow-hidden pt-28">
-    <div class="orb orb-1 animate-float"></div>
-    <div class="orb orb-2 animate-float" style="animation-delay:2s"></div>
-    <div class="aurora" aria-hidden="true"></div>
+  <!-- HERO SUPER UI -->
+  <section id="top" class="hero-wrap relative overflow-hidden pt-28">
+    <canvas id="particles"></canvas>
+    <div class="hero-orb a animate-float"></div>
+    <div class="hero-orb b animate-float" style="animation-delay:1.2s"></div>
 
-    <div class="relative parallax">
-      <div class="mx-auto max-w-7xl px-4 pb-20">
+    <div class="relative z-10">
+      <div class="mx-auto max-w-7xl px-4 pb-16 lg:pb-24">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
-          <div class="reveal">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+          <div>
+            <p class="font-display text-[12px] tracking-[.35em] uppercase text-[--teal]">People • Planet • Dignity</p>
+            <h1 class="mt-3 font-display text-5xl md:text-7xl leading-[1.02]">
               Healthy lives.
-              <span class="text-brand.gold">Sustainable planet.</span>
+              <span class="text-[--teal]">Sustainable planet.</span>
             </h1>
-            <p class="mt-5 text-lg text-slate-900 max-w-xl">
-              We bring free health screenings to underserved communities.
-              We teach simple actions that protect the environment.
+            <p class="mt-5 text-lg text-slate-800 max-w-xl">
+              Free community screenings.
+              Practical eco-education.
+              Clear referrals.
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
-              <a href="#donate" class="btn-glow inline-flex items-center gap-2 rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg shadow-glow">
-                Donate
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-              </a>
-              <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border border-slate-200/70 px-6 py-3 font-semibold hover:border-brand.gold/50">
-                Volunteer
-              </a>
+              <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white shadow-glow"><span>Donate</span></a>
+              <a href="#contact" class="magnetic inline-flex items-center gap-2 rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]"><span>Volunteer</span></a>
             </div>
 
             <div class="mt-10 grid grid-cols-3 gap-4 max-w-lg">
-              <div class="glass rounded-2xl p-4 text-center">
+              <div class="card p-4 text-center">
                 <div class="text-2xl font-extrabold" data-counter="true" data-target="5000">0</div>
                 <div class="text-xs text-slate-600 mt-1">Screenings</div>
               </div>
-              <div class="glass rounded-2xl p-4 text-center">
+              <div class="card p-4 text-center">
                 <div class="text-2xl font-extrabold" data-counter="true" data-target="120">0</div>
                 <div class="text-xs text-slate-600 mt-1">Communities</div>
               </div>
-              <div class="glass rounded-2xl p-4 text-center">
+              <div class="card p-4 text-center">
                 <div class="text-2xl font-extrabold" data-counter="true" data-target="300">0</div>
                 <div class="text-xs text-slate-600 mt-1">Volunteers</div>
               </div>
             </div>
           </div>
 
-          <div class="reveal">
+          <div>
             <div class="relative">
-              <div class="absolute -inset-1 rounded-3xl opacity-60 bg-gradient-to-tr from-brand.gold/25 to-[#CDE0E4]/15 blur-2xl"></div>
-              <div class="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl tilt">
+              <div class="absolute -inset-1 rounded-3xl opacity-60 bg-gradient-to-tr from-[--amber]/25 to-[--blue]/20 blur-2xl"></div>
+              <div class="relative slider border border-slate-200 shadow-2xl">
                 <div id="heroSlider" class="slider">
                   <div class="slider-track">
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Blood pressure checks on site.</p></div>
-                    </div>
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Community screening station.</p></div>
-                    </div>
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Glucose and BMI checks.</p></div>
-                    </div>
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Vision screening booth.</p></div>
-                    </div>
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Malaria RDT corner.</p></div>
-                    </div>
-                    <div class="slide">
-                      <img class="w-full h-[420px] object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6"/>
-                      <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Health counseling.</p></div>
-                    </div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Blood pressure checks on site.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Community screening station.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Glucose and BMI checks.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Vision screening booth.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Malaria RDT corner.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Health counseling.</p></div></div>
                   </div>
                   <button class="slider-btn prev" type="button" aria-label="Previous" data-prev><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M15 19l-7-7 7-7'/></svg></button>
                   <button class="slider-btn next" type="button" aria-label="Next" data-next><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M9 5l7 7-7 7'/></svg></button>
-                  <div class="slider-dots">
-                    <span class="dot opacity-100"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                  </div>
+                  <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
 
         </div>
@@ -229,21 +197,21 @@
     </div>
   </section>
 
-  <!-- Vision & Mission -->
-  <section id="about" class="relative py-20">
+  <!-- ABOUT: WOW split -->
+  <section id="about" class="curve py-24">
     <div class="mx-auto max-w-7xl px-4">
       <div class="grid lg:grid-cols-2 gap-10 items-start">
-        <div class="reveal space-y-6">
-          <h2 class="text-3xl md:text-4xl font-extrabold">Vision</h2>
-          <p class="text-slate-900 text-lg">Healthy lives and a sustainable planet for every community.</p>
-          <h2 class="text-3xl md:text-4xl font-extrabold mt-10">Mission</h2>
-          <p class="text-slate-900 text-lg">To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.</p>
+        <div class="space-y-6">
+          <h2 class="font-display text-4xl md:text-5xl">Vision</h2>
+          <p class="text-lg">Healthy lives and a sustainable planet for every community.</p>
+          <h2 class="font-display text-4xl md:text-5xl mt-6">Mission</h2>
+          <p class="text-lg">To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.</p>
         </div>
-        <div class="reveal grid gap-6">
-          <div class="glass rounded-3xl p-6 md:p-8">
+        <div class="grid gap-6">
+          <div class="card p-8">
             <h3 class="text-2xl font-bold">What we do</h3>
-            <p class="mt-2 text-slate-900">We run mobile clinics and community talks.
-              We focus on quick checks and clear steps that save lives and protect the environment.</p>
+            <p class="mt-2">Mobile clinics and community talks.
+              Quick checks. Clear steps. Real impact.</p>
             <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
               <span class="rounded-xl bg-white px-3 py-2">Blood Pressure</span>
               <span class="rounded-xl bg-white px-3 py-2">Blood Sugar</span>
@@ -253,41 +221,35 @@
               <span class="rounded-xl bg-white px-3 py-2">Eco Education</span>
             </div>
           </div>
-          <div class="rounded-3xl border border-brand.gold/20 p-6 md:p-8">
-            <h3 class="text-2xl font-bold text-brand.gold">Your support matters</h3>
-            <p class="mt-2 text-slate-900">Each gift fuels kits, test strips, and trees.
-              Give once or monthly.
-              Share the mission.</p>
-            <a href="#donate" class="mt-5 inline-block rounded-xl border border-brand.gold/40 px-5 py-3 font-semibold text-brand.gold btn-glow">Donate</a>
+          <div class="card p-8 border-[--amber]/30">
+            <h3 class="text-2xl font-bold text-[--teal]">Your support matters</h3>
+            <p class="mt-2">Each gift fuels kits, test strips, and trees.
+              Give once or monthly.</p>
+            <a href="#donate" class="mt-5 inline-block rounded-xl border border-slate-300 px-5 py-3 font-semibold hover:border-[--teal]">Donate</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Programs -->
-  <section id="programs" class="py-20">
+  <!-- PROGRAMS: sticky timeline -->
+  <section id="programs" class="py-24 bg-[--beige]/25">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="reveal text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Programs</h2>
-        <p class="mt-3 text-slate-900">Two tracks. One purpose.</p>
+      <div class="text-center">
+        <h2 class="font-display text-4xl md:text-5xl">Programs</h2>
+        <p class="mt-3">Medical outreach and environmental action.</p>
       </div>
 
-      <div class="mt-10 grid md:grid-cols-2 gap-6">
-        <!-- Health Screenings -->
-        <div class="reveal relative rounded-3xl border border-slate-200 overflow-hidden">
-          <div class="absolute -inset-1 opacity-40 bg-gradient-to-tr from-brand.gold/15 to-sky-300/10 animate-pulseSoft"></div>
-          <div class="relative p-8">
+      <div class="mt-12 grid md:grid-cols-2 gap-8 timeline">
+        <div class="tick">
+          <div class="card p-8">
             <div class="flex items-center gap-3">
-              <div class="h-11 w-11 rounded-2xl bg-slate-100 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h4l2 7 4-14 2 7h4"/></svg>
-              </div>
-              <h3 class="text-2xl font-bold">Community Health</h3>
+              <div class="h-11 w-11 rounded-2xl bg-[--blue] flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s6-4.5 6-10a6 6 0 0 0-12 0c0 5.5 6 10 6 10Z"/></svg></div>
+              <h3 class="text-2xl font-bold">Medical Outreach</h3>
             </div>
-            <p class="mt-3 text-slate-900">Free checks for blood pressure, blood sugar, vision, BMI, and malaria.
-              Quick triage.
-              Fast referrals.</p>
-            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-700">
+            <p class="mt-3">Free checks for blood pressure, blood sugar, vision, BMI, and malaria.
+              Quick triage. Fast referrals.</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
               <li>On-site counseling</li>
               <li>Referral letters</li>
               <li>Follow-up calls</li>
@@ -295,20 +257,15 @@
             </ul>
           </div>
         </div>
-        <!-- Environment Education -->
-        <div class="reveal relative rounded-3xl border border-slate-200 overflow-hidden">
-          <div class="absolute -inset-1 opacity-40 bg-gradient-to-tr from-[#145247]/10 to-brand.gold/15 animate-pulseSoft"></div>
-          <div class="relative p-8">
+        <div class="tick">
+          <div class="card p-8">
             <div class="flex items-center gap-3">
-              <div class="h-11 w-11 rounded-2xl bg-slate-100 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M7 8c0 2.5 2 4.5 5 4.5S17 10.5 17 8c0-2.5-2-4.5-5-4.5S7 5.5 7 8Zm-3 9h16"/></svg>
-              </div>
-              <h3 class="text-2xl font-bold">Environmental Education</h3>
+              <div class="h-11 w-11 rounded-2xl bg-[--blue] flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M7 8c0 2.5 2 4.5 5 4.5S17 10.5 17 8c0-2.5-2-4.5-5-4.5S7 5.5 7 8Zm-3 9h16"/></svg></div>
+              <h3 class="text-2xl font-bold">Humanitarian & Environment</h3>
             </div>
-            <p class="mt-3 text-slate-900">Practical tips for clean air, safe water, and low waste.
-              Tree planting.
-              Community cleanups.</p>
-            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-700">
+            <p class="mt-3">WASH education, tree planting, cleanups.
+              Risk communication for outbreaks.</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
               <li>Waste sorting</li>
               <li>Safe cooking</li>
               <li>Water safety</li>
@@ -320,93 +277,61 @@
     </div>
   </section>
 
-  <!-- Proof of Work / Gallery -->
-  <section id="proof" class="py-20">
+  <!-- GALLERY: 3D tilt grid -->
+  <section id="proof" class="py-24">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="reveal text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Proof of Work</h2>
-        <p class="mt-3 text-slate-900">Images from our last outreach.</p>
+      <div class="text-center">
+        <h2 class="font-display text-4xl md:text-5xl">Proof of Work</h2>
+        <p class="mt-3">Images from our last outreach.</p>
       </div>
-
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery">
-        <!-- Google Drive thumbnails with fallback -->
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 1">
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 2">
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 3">
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 4">
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 5">
-        <img class="rounded-2xl border border-slate-200 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 6">
-      </div>
-
-      <div class="reveal mt-10 text-center text-slate-600 text-sm">
-        <p>Follow our work:
-          <a class="text-brand.gold hover:underline" href="https://facebook.com/healthycommunity" target="_blank" rel="noreferrer">Facebook</a>
-          ·
-          <a class="text-brand.gold hover:underline" href="https://instagram.com/healthycommunity" target="_blank" rel="noreferrer">Instagram</a>
-        </p>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gallery">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5">
+        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6">
       </div>
     </div>
   </section>
 
-  <!-- Team -->
-  <section id="team" class="py-20">
+  <!-- TEAM -->
+  <section id="team" class="py-24 bg-[--blue]/20">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="reveal text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Team</h2>
-        <p class="mt-3 text-slate-900">People who make it happen.</p>
+      <div class="text-center">
+        <h2 class="font-display text-4xl md:text-5xl">Team</h2>
+        <p class="mt-3">People who make it happen.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Card template -->
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Bismark Dabuo</h3>
-          <p class="text-slate-600">Founder</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Daniel Gbati</h3>
-          <p class="text-slate-600">Co‑Founder</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Albin</h3>
-          <p class="text-slate-600">President</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Ali Raymond</h3>
-          <p class="text-slate-600">Vice President</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Emmanuella Avogo</h3>
-          <p class="text-slate-600">Secretary</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Ellen Frances Sankah</h3>
-          <p class="text-slate-600">Assistant Secretary</p>
-        </div>
-        <div class="reveal glass rounded-3xl p-6">
-          <h3 class="text-xl font-bold">Godwin Biwin</h3>
-          <p class="text-slate-600">Financial Secretary</p>
-        </div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Bismark Dabuo</h3><p class="text-slate-600">Founder</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Daniel Gbati</h3><p class="text-slate-600">Co‑Founder</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Albin</h3><p class="text-slate-600">President</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Ali Raymond</h3><p class="text-slate-600">Vice President</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Emmanuella Avogo</h3><p class="text-slate-600">Secretary</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Ellen Frances Sankah</h3><p class="text-slate-600">Assistant Secretary</p></div>
+        <div class="card p-6"><h3 class="text-xl font-bold">Godwin Biwin</h3><p class="text-slate-600">Financial Secretary</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Donate & CTA -->
-  <section id="donate" class="py-20">
+  <!-- DONATE -->
+  <section id="donate" class="py-24">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="reveal grid lg:grid-cols-2 gap-8 items-center">
-        <div class="rounded-3xl border border-brand.gold/25 p-8">
-          <h3 class="text-3xl font-extrabold text-brand.gold">Give</h3>
-          <p class="mt-3 text-slate-900">Your gift sends a mobile clinic to one more street.
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div class="card p-8">
+          <h3 class="text-3xl font-extrabold text-[--teal]">Give</h3>
+          <p class="mt-3">Your gift sends a mobile clinic to one more street.
             You put test kits into trained hands.
             You plant trees in the right soil.</p>
           <div class="mt-6 flex flex-wrap gap-3 text-sm">
-            <a href="#" class="rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg btn-glow">Give Once</a>
-            <a href="#" class="rounded-xl border border-brand.gold/40 px-6 py-3 font-semibold text-brand.gold btn-glow">Give Monthly</a>
-            <a href="#contact" class="rounded-xl border border-slate-200/70 px-6 py-3 font-semibold hover:border-brand.gold/40">Partner with us</a>
+            <a href="#" class="magnetic rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white">Give Once</a>
+            <a href="#" class="magnetic rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]">Give Monthly</a>
+            <a href="#contact" class="magnetic rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]">Partner with us</a>
           </div>
         </div>
-        <div class="glass rounded-3xl p-8">
+        <div class="card p-8">
           <h4 class="text-xl font-bold">Where funds go</h4>
-          <ul class="mt-4 space-y-3 text-slate-900">
+          <ul class="mt-4 space-y-3">
             <li>• Test kits and consumables</li>
             <li>• Transport and logistics</li>
             <li>• Volunteer training</li>
@@ -417,59 +342,58 @@
     </div>
   </section>
 
-  <!-- Contact / Volunteer Form -->
-  <section id="contact" class="py-20">
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-[--beige]/25">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="reveal text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Volunteer or Contact</h2>
-        <p class="mt-3 text-slate-900">Tell us where you can help.
-          We will reach out.</p>
+      <div class="text-center">
+        <h2 class="font-display text-4xl md:text-5xl">Volunteer or Contact</h2>
+        <p class="mt-3">Tell us where you can help. We will reach out.</p>
       </div>
-      <form class="reveal mt-10 max-w-3xl mx-auto glass rounded-3xl p-6 md:p-8 grid md:grid-cols-2 gap-4" action="https://formspree.io/f/your-id" method="POST">
+      <form class="mt-10 max-w-3xl mx-auto card p-6 md:p-8 grid md:grid-cols-2 gap-4" action="https://formspree.io/f/your-id" method="POST">
         <div class="md:col-span-1 grid gap-3">
           <label class="text-sm text-slate-600">Full name</label>
-          <input required name="name" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Your name" />
+          <input required name="name" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Your name" />
         </div>
         <div class="md:col-span-1 grid gap-3">
           <label class="text-sm text-slate-600">Email</label>
-          <input required type="email" name="email" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="you@email.com" />
+          <input required type="email" name="email" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="you@email.com" />
         </div>
         <div class="md:col-span-1 grid gap-3">
           <label class="text-sm text-slate-600">Phone</label>
-          <input name="phone" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Optional" />
+          <input name="phone" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Optional" />
         </div>
         <div class="md:col-span-1 grid gap-3">
           <label class="text-sm text-slate-600">City / Country</label>
-          <input name="location" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Where you are" />
+          <input name="location" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Where you are" />
         </div>
         <div class="md:col-span-2 grid gap-3">
           <label class="text-sm text-slate-600">How you want to help</label>
-          <textarea required name="message" rows="4" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Screenings, logistics, funding, media, cleanup, etc."></textarea>
+          <textarea required name="message" rows="4" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Screenings, logistics, funding, media, cleanup, etc."></textarea>
         </div>
         <div class="md:col-span-2 flex items-center justify-between">
           <div class="text-xs text-slate-500">By submitting, you agree to be contacted.</div>
-          <button class="btn-glow rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg" type="submit">Send</button>
+          <button class="magnetic rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white" type="submit"><span>Send</span></button>
         </div>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="pt-10 pb-16 border-t border-slate-200">
     <div class="mx-auto max-w-7xl px-4">
       <div class="grid md:grid-cols-4 gap-6 items-start">
         <div class="md:col-span-2">
           <div class="flex items-center gap-2">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400/90 to-teal-300/70 text-brand-bg font-extrabold">HC</span>
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[--teal] text-white font-extrabold">HC</span>
             <span class="font-semibold">Healthy Community</span>
           </div>
           <p class="mt-2 text-sm text-slate-600 max-w-sm">Healthy lives and a sustainable planet for every community.</p>
         </div>
         <div class="text-sm text-slate-600">
           <p class="text-slate-900 font-semibold mb-2">Links</p>
-          <p><a href="#about" class="hover:text-brand.teal">About</a></p>
-          <p><a href="#programs" class="hover:text-brand.teal">Programs</a></p>
-          <p><a href="#donate" class="hover:text-brand.teal">Donate</a></p>
+          <p><a href="#about" class="hover:text-[--teal]">About</a></p>
+          <p><a href="#programs" class="hover:text-[--teal]">Programs</a></p>
+          <p><a href="#donate" class="hover:text-[--teal]">Donate</a></p>
         </div>
         <div class="text-sm text-slate-600">
           <p class="text-slate-900 font-semibold mb-2">Contact</p>
@@ -486,6 +410,11 @@
     <img id="lightboxImg" alt="Gallery image" />
   </div>
 
+  <!-- Command palette -->
+  <div id="cmd"><div class="card w-[680px] max-w-[92vw] p-4">
+    <input id="cmdInput" placeholder="Type to jump: about, programs, donate…  (press / to open, esc to close)" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-[--teal]"/>
+  </div></div>
+
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -495,14 +424,12 @@
     const mobileMenu = document.getElementById('mobileMenu');
     menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
 
-    // Header style on scroll
-    const header = document.getElementById('header');
-    const onScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      header.style.paddingTop = y > 8 ? '0' : '';
-      header.firstElementChild.firstElementChild.classList.toggle('glass', y > 2);
-    };
-    window.addEventListener('scroll', onScroll); onScroll();
+    // Spotlight cursor
+    const sp = document.querySelector('.spotlight');
+    window.addEventListener('mousemove', (e)=>{
+      sp.style.setProperty('--mx', e.clientX+'px');
+      sp.style.setProperty('--my', e.clientY+'px');
+    });
 
     // Scroll progress
     const progress = document.getElementById('progress');
@@ -512,12 +439,6 @@
       progress.style.width = scrolled + '%';
     };
     window.addEventListener('scroll', setProgress); setProgress();
-
-    // Reveal on view
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold:.12 });
-    document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
 
     // Counters
     const counterObserver = new IntersectionObserver((entries)=>{
@@ -534,54 +455,78 @@
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightboxImg');
     document.getElementById('gallery').addEventListener('click', (e)=>{
-      if(e.target.tagName === 'IMG'){
-        lbImg.src = e.target.src; lb.classList.add('open');
-      }
+      if(e.target.tagName === 'IMG'){ lbImg.src = e.target.src; lb.classList.add('open'); }
     });
     lb.addEventListener('click', ()=> lb.classList.remove('open'));
 
-    // Parallax on mouse move (hero only)
-    const hero = document.querySelector('#top .parallax');
-    hero.addEventListener('mousemove', (e)=>{
-      const rect = hero.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - .5;
-      const y = (e.clientY - rect.top) / rect.height - .5;
-      document.querySelectorAll('.orb').forEach((orb, i)=>{
-        const strength = (i+1) * 8; // 8, 16
-        orb.style.transform = `translate(${x*strength}px, ${y*strength}px)`;
+    // Tilt images
+    document.querySelectorAll('.tilt-img').forEach(img =>{
+      const w = 8; // tilt strength
+      img.addEventListener('mousemove', (e)=>{
+        const r = img.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5;
+        const y = (e.clientY - r.top) / r.height - .5;
+        img.style.transform = `rotateX(${ -y*w }deg) rotateY(${ x*w }deg)`;
       });
+      img.addEventListener('mouseleave', ()=> img.style.transform = 'rotateX(0) rotateY(0)');
     });
 
-    // Hero slider logic
+    // Magnetic buttons
+    document.querySelectorAll('.magnetic').forEach(btn=>{
+      btn.addEventListener('mousemove', (e)=>{
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width/2)/8;
+        const y = (e.clientY - r.top - r.height/2)/8;
+        btn.style.transform = `translate(${x}px,${y}px)`;
+      });
+      btn.addEventListener('mouseleave', ()=> btn.style.transform = 'translate(0,0)');
+    });
+
+    // Particles background (hero)
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W,H,points=[]; const COUNT = 60; const SPEED = .3;
+    const rand = (a,b)=> a + Math.random()*(b-a);
+    function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; points = Array.from({length:COUNT},()=>({x:rand(0,W), y:rand(0,H), vx:rand(-SPEED,SPEED), vy:rand(-SPEED,SPEED)})); }
+    function step(){ ctx.clearRect(0,0,W,H); ctx.fillStyle='rgba(20,82,71,.35)';
+      for(const p of points){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,2.2,0,Math.PI*2); ctx.fill(); }
+      for(let i=0;i<points.length;i++){ for(let j=i+1;j<points.length;j++){ const dx=points[i].x-points[j].x, dy=points[i].y-points[j].y; const d = Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle = `rgba(250,168,5,${1-d/120})`; ctx.lineWidth=.6; ctx.beginPath(); ctx.moveTo(points[i].x,points[i].y); ctx.lineTo(points[j].x,points[j].y); ctx.stroke(); } } }
+      requestAnimationFrame(step);
+    }
+    resize(); step(); window.addEventListener('resize', resize);
+
+    // Hero slider
     (function(){
-      const slider = document.getElementById('heroSlider');
-      if(!slider) return;
+      const slider = document.getElementById('heroSlider'); if(!slider) return;
       const track = slider.querySelector('.slider-track');
       const slides = slider.querySelectorAll('.slide');
       const dots = slider.querySelectorAll('.dot');
       const btnPrev = slider.querySelector('[data-prev]');
       const btnNext = slider.querySelector('[data-next]');
       let i = 0, timer;
-      const go = (n)=>{
-        i = (n + slides.length) % slides.length;
-        track.style.transform = `translateX(-${i*100}%)`;
-        dots.forEach((d,idx)=> d.classList.toggle('opacity-100', idx===i));
-      };
-      const next = ()=> go(i+1);
-      const prev = ()=> go(i-1);
-      btnNext.addEventListener('click', next);
-      btnPrev.addEventListener('click', prev);
+      const go = (n)=>{ i=(n+slides.length)%slides.length; track.style.transform=`translateX(-${i*100}%)`; dots.forEach((d,idx)=> d.classList.toggle('active', idx===i)); };
+      const next = ()=> go(i+1); const prev=()=>go(i-1);
+      btnNext.addEventListener('click', next); btnPrev.addEventListener('click', prev);
       dots.forEach((d,idx)=> d.addEventListener('click', ()=> go(idx)));
-      const play = ()=> timer = setInterval(next, 5000);
-      const stop = ()=> { if(timer) clearInterval(timer); timer = null; };
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', play);
-      // basic swipe
-      let startX = 0;
-      track.addEventListener('touchstart', (e)=>{ startX = e.touches[0].clientX; }, {passive:true});
-      track.addEventListener('touchend', (e)=>{ const dx = e.changedTouches[0].clientX - startX; if(Math.abs(dx) > 40){ dx < 0 ? next() : prev(); } }, {passive:true});
+      const play=()=> timer=setInterval(next,5000); const stop=()=>{if(timer) clearInterval(timer); timer=null};
+      slider.addEventListener('mouseenter', stop); slider.addEventListener('mouseleave', play);
+      // swipe
+      let sx=0; track.addEventListener('touchstart', e=>{sx=e.touches[0].clientX},{passive:true}); track.addEventListener('touchend', e=>{const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ dx<0?next():prev(); }},{passive:true});
       play();
     })();
+
+    // Command palette
+    const cmd = document.getElementById('cmd');
+    const cmdInput = document.getElementById('cmdInput');
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === '/'){ e.preventDefault(); cmd.classList.add('open'); cmdInput.focus(); }
+      if(e.key === 'Escape'){ cmd.classList.remove('open'); }
+      if(e.key === 'Enter' && cmd.classList.contains('open')){
+        const q = cmdInput.value.trim().toLowerCase();
+        const map = { about:'#about', programs:'#programs', team:'#team', proof:'#proof', donate:'#donate', contact:'#contact' };
+        if(map[q]){ location.hash = map[q]; cmd.classList.remove('open'); }
+      }
+    });
   </script>
 </body>
 </html>
