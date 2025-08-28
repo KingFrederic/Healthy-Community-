@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Healthy Community — Health & Environment Outreach</title>
+  <meta name="description" content="Healthy Community delivers free health screenings and environmental education to underserved communities." />
+  <meta property="og:title" content="Healthy Community" />
+  <meta property="og:description" content="Healthy lives and a sustainable planet for every community." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0f19" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial'] },
+          colors: {
+            brand: {
+              bg: '#0b0f19',      // deep ink
+              card: '#111827',    // dark slate
+              gold: '#d4af37',    // premium accent
+              soft: '#a3bffa'     // soft accent
+            }
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(212,175,55,.25), 0 10px 30px rgba(212,175,55,.15)'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+            pulseSoft: { '0%': { opacity: .6 }, '50%': { opacity: 1 }, '100%': { opacity: .6 } }
+          },
+          animation: { float: 'float 8s ease-in-out infinite', pulseSoft: 'pulseSoft 6s ease-in-out infinite' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{ --brand:#0b0f19; --gold:#d4af37; }
+    html { scroll-behavior: smooth; }
+    /* Glass */
+    .glass { backdrop-filter: blur(10px); background: rgba(17,24,39,.6); border: 1px solid rgba(212,175,55,.15); }
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: all .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Scroll progress bar */
+    #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0; z-index: 60; box-shadow: 0 0 12px rgba(212,175,55,.6); }
+    /* Hero animated orbs */
+    .orb { filter: blur(40px); opacity:.35; position:absolute; border-radius:999px; }
+    .orb-1 { width: 420px; height: 420px; background: radial-gradient(circle, #d4af37, rgba(212,175,55,.08)); top:-60px; left:-60px; }
+    .orb-2 { width: 360px; height: 360px; background: radial-gradient(circle, #22d3ee, rgba(34,211,238,.06)); bottom: -80px; right: -60px; }
+    /* Lightbox */
+    .lightbox { position: fixed; inset:0; display:none; background: rgba(0,0,0,.85); z-index:70; align-items:center; justify-content:center; }
+    .lightbox.open { display:flex; }
+    .lightbox img{ max-width:92vw; max-height:88vh; border-radius:1rem; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+    /* Button glow */
+    .btn-glow:hover { box-shadow: 0 0 0 1px rgba(212,175,55,.35), 0 12px 36px rgba(212,175,55,.28); }
+    /* Parallax */
+    .parallax { transform-style: preserve-3d; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "Healthy Community",
+    "url": "https://example.org",
+    "missionStatement": "To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.",
+    "founder": "Bismark Dabuo",
+    "sameAs": [
+      "https://facebook.com/healthycommunity",
+      "https://instagram.com/healthycommunity"
+    ]
+  }
+  </script>
+</head>
+<body class="bg-brand-bg text-white font-sans">
+  <div id="progress"></div>
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all">
+    <div class="mx-auto max-w-7xl px-4">
+      <nav class="mt-4 mb-3 rounded-2xl glass flex items-center justify-between px-4 py-3">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/90 to-yellow-300/70 text-brand-bg font-extrabold">HC</span>
+          <span class="text-lg font-bold tracking-tight">Healthy Community</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#about" class="hover:text-brand.gold">About</a>
+          <a href="#programs" class="hover:text-brand.gold">Programs</a>
+          <a href="#proof" class="hover:text-brand.gold">Proof</a>
+          <a href="#team" class="hover:text-brand.gold">Team</a>
+          <a href="#contact" class="hover:text-brand.gold">Contact</a>
+          <a href="#donate" class="inline-flex items-center gap-2 rounded-xl border border-[rgba(212,175,55,.3)] px-4 py-2 text-sm font-semibold text-brand.gold btn-glow">Donate</a>
+        </div>
+        <button id="menuBtn" aria-label="Open Menu" class="md:hidden rounded-xl border border-white/10 p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+      <div id="mobileMenu" class="md:hidden hidden glass rounded-2xl mx-1 px-4 py-3">
+        <div class="grid gap-3 text-sm">
+          <a href="#about" class="py-2">About</a>
+          <a href="#programs" class="py-2">Programs</a>
+          <a href="#proof" class="py-2">Proof</a>
+          <a href="#team" class="py-2">Team</a>
+          <a href="#contact" class="py-2">Contact</a>
+          <a href="#donate" class="py-2 text-brand.gold font-semibold">Donate</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative overflow-hidden pt-28">
+    <div class="orb orb-1 animate-float"></div>
+    <div class="orb orb-2 animate-float" style="animation-delay:2s"></div>
+
+    <div class="relative parallax">
+      <div class="mx-auto max-w-7xl px-4 pb-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="reveal">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+              Healthy lives.
+              <span class="text-brand.gold">Sustainable planet.</span>
+            </h1>
+            <p class="mt-5 text-lg text-white/80 max-w-xl">
+              We bring free health screenings to underserved communities.
+              We teach simple actions that protect the environment.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#donate" class="btn-glow inline-flex items-center gap-2 rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg shadow-glow">
+                Donate
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 font-semibold hover:border-brand.gold/50">
+                Volunteer
+              </a>
+            </div>
+
+            <div class="mt-10 grid grid-cols-3 gap-4 max-w-lg">
+              <div class="glass rounded-2xl p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="5000">0</div>
+                <div class="text-xs text-white/70 mt-1">Screenings</div>
+              </div>
+              <div class="glass rounded-2xl p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="120">0</div>
+                <div class="text-xs text-white/70 mt-1">Communities</div>
+              </div>
+              <div class="glass rounded-2xl p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="300">0</div>
+                <div class="text-xs text-white/70 mt-1">Volunteers</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal">
+            <div class="relative">
+              <div class="absolute -inset-1 rounded-3xl opacity-60 bg-gradient-to-tr from-brand.gold/30 to-sky-300/20 blur-2xl"></div>
+              <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1600&auto=format&fit=crop" alt="Community health outreach" class="w-full h-[420px] object-cover" />
+                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                  <p class="text-sm text-white/85">Free blood pressure and glucose checks at our last outreach.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section id="about" class="relative py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div class="reveal space-y-6">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Vision</h2>
+          <p class="text-white/80 text-lg">Healthy lives and a sustainable planet for every community.</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold mt-10">Mission</h2>
+          <p class="text-white/80 text-lg">To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.</p>
+        </div>
+        <div class="reveal grid gap-6">
+          <div class="glass rounded-3xl p-6 md:p-8">
+            <h3 class="text-2xl font-bold">What we do</h3>
+            <p class="mt-2 text-white/80">We run mobile clinics and community talks.
+              We focus on quick checks and clear steps that save lives and protect the environment.</p>
+            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+              <span class="rounded-xl bg-white/5 px-3 py-2">Blood Pressure</span>
+              <span class="rounded-xl bg-white/5 px-3 py-2">Blood Sugar</span>
+              <span class="rounded-xl bg-white/5 px-3 py-2">Vision</span>
+              <span class="rounded-xl bg-white/5 px-3 py-2">BMI</span>
+              <span class="rounded-xl bg-white/5 px-3 py-2">Malaria</span>
+              <span class="rounded-xl bg-white/5 px-3 py-2">Eco Education</span>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-brand.gold/20 p-6 md:p-8">
+            <h3 class="text-2xl font-bold text-brand.gold">Your support matters</h3>
+            <p class="mt-2 text-white/80">Each gift fuels kits, test strips, and trees.
+              Give once or monthly.
+              Share the mission.</p>
+            <a href="#donate" class="mt-5 inline-block rounded-xl border border-brand.gold/40 px-5 py-3 font-semibold text-brand.gold btn-glow">Donate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs" class="py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="reveal text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Programs</h2>
+        <p class="mt-3 text-white/80">Two tracks. One purpose.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <!-- Health Screenings -->
+        <div class="reveal relative rounded-3xl border border-white/10 overflow-hidden">
+          <div class="absolute -inset-1 opacity-40 bg-gradient-to-tr from-brand.gold/15 to-sky-300/10 animate-pulseSoft"></div>
+          <div class="relative p-8">
+            <div class="flex items-center gap-3">
+              <div class="h-11 w-11 rounded-2xl bg-white/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h4l2 7 4-14 2 7h4"/></svg>
+              </div>
+              <h3 class="text-2xl font-bold">Community Health</h3>
+            </div>
+            <p class="mt-3 text-white/80">Free checks for blood pressure, blood sugar, vision, BMI, and malaria.
+              Quick triage.
+              Fast referrals.</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-white/75">
+              <li>On-site counseling</li>
+              <li>Referral letters</li>
+              <li>Follow-up calls</li>
+              <li>Health cards</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Environment Education -->
+        <div class="reveal relative rounded-3xl border border-white/10 overflow-hidden">
+          <div class="absolute -inset-1 opacity-40 bg-gradient-to-tr from-emerald-400/10 to-brand.gold/15 animate-pulseSoft"></div>
+          <div class="relative p-8">
+            <div class="flex items-center gap-3">
+              <div class="h-11 w-11 rounded-2xl bg-white/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M7 8c0 2.5 2 4.5 5 4.5S17 10.5 17 8c0-2.5-2-4.5-5-4.5S7 5.5 7 8Zm-3 9h16"/></svg>
+              </div>
+              <h3 class="text-2xl font-bold">Environmental Education</h3>
+            </div>
+            <p class="mt-3 text-white/80">Practical tips for clean air, safe water, and low waste.
+              Tree planting.
+              Community cleanups.</p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-white/75">
+              <li>Waste sorting</li>
+              <li>Safe cooking</li>
+              <li>Water safety</li>
+              <li>Tree care</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof of Work / Gallery -->
+  <section id="proof" class="py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="reveal text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Proof of Work</h2>
+        <p class="mt-3 text-white/80">Images from our last outreach.</p>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery">
+        <!-- Google Drive embeds using uc?export=view -->
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" alt="Outreach photo 1">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" alt="Outreach photo 2">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" alt="Outreach photo 3">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" alt="Outreach photo 4">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" alt="Outreach photo 5">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" alt="Outreach photo 6">
+      </div>
+
+      <div class="reveal mt-10 text-center text-white/70 text-sm">
+        <p>Follow our work:
+          <a class="text-brand.gold hover:underline" href="https://facebook.com/healthycommunity" target="_blank" rel="noreferrer">Facebook</a>
+          ·
+          <a class="text-brand.gold hover:underline" href="https://instagram.com/healthycommunity" target="_blank" rel="noreferrer">Instagram</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="reveal text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Team</h2>
+        <p class="mt-3 text-white/80">People who make it happen.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card template -->
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Bismark Dabuo</h3>
+          <p class="text-white/70">Founder</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Daniel Gbati</h3>
+          <p class="text-white/70">Co‑Founder</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Albin</h3>
+          <p class="text-white/70">President</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Ali Raymond</h3>
+          <p class="text-white/70">Vice President</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Emmanuella Avogo</h3>
+          <p class="text-white/70">Secretary</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Ellen Frances Sankah</h3>
+          <p class="text-white/70">Assistant Secretary</p>
+        </div>
+        <div class="reveal glass rounded-3xl p-6">
+          <h3 class="text-xl font-bold">Godwin Biwin</h3>
+          <p class="text-white/70">Financial Secretary</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate & CTA -->
+  <section id="donate" class="py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="reveal grid lg:grid-cols-2 gap-8 items-center">
+        <div class="rounded-3xl border border-brand.gold/25 p-8">
+          <h3 class="text-3xl font-extrabold text-brand.gold">Give</h3>
+          <p class="mt-3 text-white/80">Your gift sends a mobile clinic to one more street.
+            You put test kits into trained hands.
+            You plant trees in the right soil.</p>
+          <div class="mt-6 flex flex-wrap gap-3 text-sm">
+            <a href="#" class="rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg btn-glow">Give Once</a>
+            <a href="#" class="rounded-xl border border-brand.gold/40 px-6 py-3 font-semibold text-brand.gold btn-glow">Give Monthly</a>
+            <a href="#contact" class="rounded-xl border border-white/15 px-6 py-3 font-semibold hover:border-brand.gold/40">Partner with us</a>
+          </div>
+        </div>
+        <div class="glass rounded-3xl p-8">
+          <h4 class="text-xl font-bold">Where funds go</h4>
+          <ul class="mt-4 space-y-3 text-white/80">
+            <li>• Test kits and consumables</li>
+            <li>• Transport and logistics</li>
+            <li>• Volunteer training</li>
+            <li>• Trees and cleanup tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Volunteer Form -->
+  <section id="contact" class="py-20">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="reveal text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Volunteer or Contact</h2>
+        <p class="mt-3 text-white/80">Tell us where you can help.
+          We will reach out.</p>
+      </div>
+      <form class="reveal mt-10 max-w-3xl mx-auto glass rounded-3xl p-6 md:p-8 grid md:grid-cols-2 gap-4" action="https://formspree.io/f/your-id" method="POST">
+        <div class="md:col-span-1 grid gap-3">
+          <label class="text-sm text-white/70">Full name</label>
+          <input required name="name" class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Your name" />
+        </div>
+        <div class="md:col-span-1 grid gap-3">
+          <label class="text-sm text-white/70">Email</label>
+          <input required type="email" name="email" class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="you@email.com" />
+        </div>
+        <div class="md:col-span-1 grid gap-3">
+          <label class="text-sm text-white/70">Phone</label>
+          <input name="phone" class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Optional" />
+        </div>
+        <div class="md:col-span-1 grid gap-3">
+          <label class="text-sm text-white/70">City / Country</label>
+          <input name="location" class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Where you are" />
+        </div>
+        <div class="md:col-span-2 grid gap-3">
+          <label class="text-sm text-white/70">How you want to help</label>
+          <textarea required name="message" rows="4" class="rounded-xl bg-white/5 border border-white/10 px-4 py-3 outline-none focus:border-brand.gold/50" placeholder="Screenings, logistics, funding, media, cleanup, etc."></textarea>
+        </div>
+        <div class="md:col-span-2 flex items-center justify-between">
+          <div class="text-xs text-white/60">By submitting, you agree to be contacted.</div>
+          <button class="btn-glow rounded-xl bg-brand.gold px-6 py-3 font-semibold text-brand-bg" type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pt-10 pb-16 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="grid md:grid-cols-3 gap-6 items-center">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500/90 to-yellow-300/70 text-brand-bg font-extrabold">HC</span>
+            <span class="font-semibold">Healthy Community</span>
+          </div>
+          <p class="mt-2 text-sm text-white/70 max-w-sm">Healthy lives and a sustainable planet for every community.</p>
+        </div>
+        <div class="text-sm text-white/70">
+          <p><span class="text-white/90">Email:</span> hello@healthycommunity.org</p>
+          <p class="mt-1"><span class="text-white/90">Social:</span> Facebook · Instagram</p>
+        </div>
+        <div class="md:text-right text-sm text-white/60">© <span id="year"></span> Healthy Community. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <img id="lightboxImg" alt="Gallery image" />
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+
+    // Header style on scroll
+    const header = document.getElementById('header');
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      header.style.paddingTop = y > 8 ? '0' : '';
+      header.firstElementChild.firstElementChild.classList.toggle('glass', y > 2);
+    };
+    window.addEventListener('scroll', onScroll); onScroll();
+
+    // Scroll progress
+    const progress = document.getElementById('progress');
+    const setProgress = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      progress.style.width = scrolled + '%';
+    };
+    window.addEventListener('scroll', setProgress); setProgress();
+
+    // Reveal on view
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
+
+    // Counters
+    const counterObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const el = entry.target; const target = +el.dataset.target; let cur = 0; const step = Math.max(1, Math.floor(target/90));
+        const tick = () => { cur += step; if(cur >= target){ el.textContent = target.toLocaleString(); } else { el.textContent = cur.toLocaleString(); requestAnimationFrame(tick); } };
+        tick(); counterObserver.unobserve(el);
+      })
+    }, { threshold:.4 });
+    document.querySelectorAll('[data-counter="true"]').forEach(el=> counterObserver.observe(el));
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    document.getElementById('gallery').addEventListener('click', (e)=>{
+      if(e.target.tagName === 'IMG'){
+        lbImg.src = e.target.src; lb.classList.add('open');
+      }
+    });
+    lb.addEventListener('click', ()=> lb.classList.remove('open'));
+
+    // Parallax on mouse move (hero only)
+    const hero = document.querySelector('#top .parallax');
+    hero.addEventListener('mousemove', (e)=>{
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - .5;
+      const y = (e.clientY - rect.top) / rect.height - .5;
+      document.querySelectorAll('.orb').forEach((orb, i)=>{
+        const strength = (i+1) * 8; // 8, 16
+        orb.style.transform = `translate(${x*strength}px, ${y*strength}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
