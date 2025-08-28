@@ -62,17 +62,6 @@
     .dot{ width:9px; height:9px; border-radius:999px; background:rgba(20,82,71,.35); border:1px solid rgba(0,0,0,.06); opacity:.7 }
     .dot.active{ background:var(--amber); opacity:1 }
 
-    /* Full-bleed helpers */
-    .full-bleed{ width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; }
-    .slider-full{ border-radius:0; border:none; box-shadow:none }
-    .slider--hero .slide img{ height:74vh; }
-    @media (min-width:768px){ .slider--hero .slide img{ height:82vh; } }
-
-    /* Hero overlay */
-    .hero-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:3rem 1rem; background: linear-gradient(180deg, rgba(14,17,22,.35), rgba(14,17,22,.10) 30%, rgba(14,17,22,.35)); pointer-events:none; }
-    .headline-card{ border-radius:22px; }
-    .intro{ display:none; }
-
     /* Particles */
     #particles{ position:absolute; inset:0; z-index:0 }
 
@@ -148,51 +137,61 @@
     <div class="hero-orb b animate-float" style="animation-delay:1.2s"></div>
 
     <div class="relative z-10">
-      <div class="full-bleed">
-        <div id="heroSlider" class="slider slider-full slider--hero">
-          <div class="slider-track">
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Blood pressure checks on site.</p></div>
+      <div class="mx-auto max-w-7xl px-4 pb-16 lg:pb-24">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <p class="font-display text-[12px] tracking-[.35em] uppercase text-[--teal]">People • Planet • Dignity</p>
+            <h1 class="mt-3 font-display text-5xl md:text-7xl leading-[1.02]">
+              Healthy lives.
+              <span class="text-[--teal]">Sustainable planet.</span>
+            </h1>
+            <p class="mt-5 text-lg text-slate-800 max-w-xl">
+              Free community screenings.
+              Practical eco-education.
+              Clear referrals.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white shadow-glow"><span>Donate</span></a>
+              <a href="#contact" class="magnetic inline-flex items-center gap-2 rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]"><span>Volunteer</span></a>
             </div>
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Community screening station.</p></div>
-            </div>
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Glucose and BMI checks.</p></div>
-            </div>
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Vision screening booth.</p></div>
-            </div>
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Malaria RDT corner.</p></div>
-            </div>
-            <div class="slide">
-              <img class="w-full object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w2000" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6"/>
-              <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Health counseling.</p></div>
-            </div>
-          </div>
 
-          <!-- Headline overlay on slider -->
-          <div class="hero-overlay">
-            <div class="headline-card glass max-w-3xl mx-auto text-center p-6 md:p-10 pointer-events-auto">
-              <p class="font-display text-[12px] tracking-[.35em] uppercase text-[--teal]">People • Planet • Dignity</p>
-              <h1 class="mt-2 font-display text-4xl md:text-6xl leading-[1.05] text-slate-900">Healthy lives. <span class="text-[--teal]">Sustainable planet.</span></h1>
-              <p class="mt-4 md:text-lg text-slate-800">Free community screenings. Practical eco-education. Clear referrals.</p>
-              <div class="mt-6 flex flex-wrap gap-3 justify-center">
-                <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white shadow-glow"><span>Donate</span></a>
-                <a href="#contact" class="magnetic inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold hover:border-[--teal]"><span>Volunteer</span></a>
+            <div class="mt-10 grid grid-cols-3 gap-4 max-w-lg">
+              <div class="card p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="5000">0</div>
+                <div class="text-xs text-slate-600 mt-1">Screenings</div>
+              </div>
+              <div class="card p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="120">0</div>
+                <div class="text-xs text-slate-600 mt-1">Communities</div>
+              </div>
+              <div class="card p-4 text-center">
+                <div class="text-2xl font-extrabold" data-counter="true" data-target="300">0</div>
+                <div class="text-xs text-slate-600 mt-1">Volunteers</div>
               </div>
             </div>
           </div>
 
-          <button class="slider-btn prev" type="button" aria-label="Previous" data-prev><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M15 19l-7-7 7-7'/></svg></button>
-          <button class="slider-btn next" type="button" aria-label="Next" data-next><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M9 5l7 7-7 7'/></svg></button>
-          <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div>
+            <div class="relative">
+              <div class="absolute -inset-1 rounded-3xl opacity-60 bg-gradient-to-tr from-[--amber]/25 to-[--blue]/20 blur-2xl"></div>
+              <div class="relative slider border border-slate-200 shadow-2xl">
+                <div id="heroSlider" class="slider">
+                  <div class="slider-track">
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Blood pressure checks on site.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Community screening station.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Glucose and BMI checks.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Vision screening booth.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Malaria RDT corner.</p></div></div>
+                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Health counseling.</p></div></div>
+                  </div>
+                  <button class="slider-btn prev" type="button" aria-label="Previous" data-prev><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M15 19l-7-7 7-7'/></svg></button>
+                  <button class="slider-btn next" type="button" aria-label="Next" data-next><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M9 5l7 7-7 7'/></svg></button>
+                  <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
