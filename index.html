@@ -275,13 +275,13 @@
       </div>
 
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery">
-        <!-- Google Drive embeds using uc?export=view -->
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" alt="Outreach photo 1">
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" alt="Outreach photo 2">
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" alt="Outreach photo 3">
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" alt="Outreach photo 4">
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" alt="Outreach photo 5">
-        <img class="rounded-2xl border border-white/10 cursor-zoom-in" src="https://drive.google.com/uc?export=view&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" alt="Outreach photo 6">
+        <!-- Google Drive thumbnails with fallback -->
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 1">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 2">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 3">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 4">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 5">
+        <img class="rounded-2xl border border-white/10 cursor-zoom-in" loading="lazy" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach photo 6">
       </div>
 
       <div class="reveal mt-10 text-center text-white/70 text-sm">
