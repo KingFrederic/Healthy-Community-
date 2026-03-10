@@ -3,529 +3,883 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Healthy Community — Care for People & Planet</title>
-  <meta name="description" content="Healthy Community delivers free health screenings and environmental education to underserved communities." />
-  <meta property="og:title" content="Healthy Community" />
-  <meta property="og:description" content="Healthy lives and a sustainable planet for every community." />
+  <title>Healthy Community (HC) — Uniting Science, Health &amp; Opportunity</title>
+  <meta name="description" content="Healthy Community unites science, health, and opportunity to build stronger, healthier communities across Ghana and beyond." />
+  <meta property="og:title" content="Healthy Community (HC)" />
+  <meta property="og:description" content="A healthy, economically empowered, and environmentally sustainable community where every individual thrives." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#F9FBFC" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
+  <meta name="theme-color" content="#145247" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter','system-ui'], display:['Fraunces','serif'] },
-          colors: { brand: { teal:'#145247', amber:'#FAA805', blue:'#CDE0E4', beige:'#E8D9C9', ink:'#0E1116' } },
-          boxShadow: { glow:'0 0 0 1px rgba(250,168,5,.25), 0 10px 40px rgba(20,82,71,.18)' },
+          fontFamily: { sans: ["Inter","system-ui","sans-serif"], display:["Playfair Display","serif"] },
+          colors: { brand: { teal:"#145247", "teal-light":"#1a6b5a", amber:"#FAA805", "amber-light":"#fdb940", blue:"#CDE0E4", beige:"#E8D9C9", ink:"#0E1116", cream:"#FAFBF9" } },
           keyframes: {
-            float: { '0%,100%':{transform:'translateY(0)'}, '50%':{transform:'translateY(-12px)'} },
-            shimmer: { '0%':{backgroundPosition:'-200% 0'}, '100%':{backgroundPosition:'200% 0'} }
+            float: { "0%,100%":{transform:"translateY(0)"}, "50%":{transform:"translateY(-14px)"} },
+            shimmer: { "0%":{backgroundPosition:"-200% 0"}, "100%":{backgroundPosition:"200% 0"} },
+            fadeUp: { "0%":{opacity:"0",transform:"translateY(30px)"}, "100%":{opacity:"1",transform:"translateY(0)"} },
+            pulse2: { "0%,100%":{opacity:"1"}, "50%":{opacity:".6"} },
+            slideIn: { "0%":{opacity:"0",transform:"translateX(-20px)"}, "100%":{opacity:"1",transform:"translateX(0)"} }
           },
-          animation: { float:'float 8s ease-in-out infinite', shimmer:'shimmer 2.2s linear infinite' }
+          animation: { float:"float 8s ease-in-out infinite", shimmer:"shimmer 2.2s linear infinite", fadeUp:"fadeUp .7s ease-out forwards", pulse2:"pulse2 2s ease-in-out infinite", slideIn:"slideIn .5s ease-out forwards" }
         }
       }
     }
   </script>
-
   <style>
-    :root{ --bg:#F9FBFC; --teal:#145247; --amber:#FAA805; --blue:#CDE0E4; --beige:#E8D9C9; }
-    html{ scroll-behavior:smooth }
-    body{ background: radial-gradient(1200px 600px at -10% -10%, rgba(250,168,5,.06), transparent 60%), radial-gradient(900px 500px at 110% -10%, rgba(205,224,228,.35), transparent 55%), linear-gradient(#F9FBFC,#F4F8FA); color:#0e1116 }
-
-    /* Header */
-    .glass{ backdrop-filter: blur(12px); background: rgba(255,255,255,.82); border:1px solid rgba(203,213,225,.9) }
-
-    /* Cursor spotlight */
-    .spotlight{ position: fixed; inset:0; pointer-events:none; background: radial-gradient(220px 220px at var(--mx,50%) var(--my,50%), rgba(250,168,5,.13), transparent 60%); z-index: 20; mix-blend-mode:multiply }
-
-    /* Progress bar */
-    #progress{ position: fixed; top:0; left:0; height:3px; background: var(--amber); width:0; z-index:60; box-shadow:0 0 12px rgba(250,168,5,.6) }
-
-    /* Hero */
-    .hero-wrap{ position:relative; min-height: 92vh; }
-    .hero-orb{ position:absolute; border-radius:999px; filter:blur(40px); opacity:.35 }
-    .hero-orb.a{ width:520px; height:520px; background:radial-gradient(circle, var(--amber), rgba(250,168,5,.08)); top:-80px; left:-80px }
-    .hero-orb.b{ width:420px; height:420px; background:radial-gradient(circle, var(--blue), rgba(205,224,228,.06)); bottom:-80px; right:-60px }
-
-    /* Slider */
-    .slider{ position:relative; border-radius:28px; overflow:hidden }
-    .slider-track{ display:flex; transition: transform .6s ease }
-    .slide{ min-width:100%; position:relative }
-    .slider-btn{ position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:12px; padding:.55rem; display:grid; place-items:center; box-shadow:0 10px 24px rgba(16,24,40,.12) }
-    .slider-btn.prev{ left:.75rem }
-    .slider-btn.next{ right:.75rem }
-    .slider-dots{ position:absolute; bottom:.8rem; left:0; right:0; display:flex; justify-content:center; gap:.45rem }
-    .dot{ width:9px; height:9px; border-radius:999px; background:rgba(20,82,71,.35); border:1px solid rgba(0,0,0,.06); opacity:.7 }
-    .dot.active{ background:var(--amber); opacity:1 }
-
-    /* Particles */
-    #particles{ position:absolute; inset:0; z-index:0 }
-
-    /* Section dividers */
-    .curve{ position:relative; }
-    .curve:before{ content:""; position:absolute; inset:auto 0 -1px 0; height:140px; background: radial-gradient(70% 140px at 50% 0, rgba(20,82,71,.10), transparent 70%); pointer-events:none }
-
-    /* Sticky timeline */
-    .timeline{ position:relative }
-    .timeline:before{ content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background: linear-gradient(var(--teal), transparent) }
-    .tick{ position:sticky; top:88px }
-
-    /* Magnetic buttons */
-    .magnetic{ position:relative; overflow:hidden }
-    .magnetic span{ position:relative; z-index:2 }
-    .magnetic:after{ content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(250,168,5,.15), rgba(20,82,71,.15), rgba(250,168,5,.15)); background-size: 200% 100%; border-radius: inherit; z-index:1; opacity:0; transition: opacity .25s; }
-    .magnetic:hover:after{ opacity:1; animation: shimmer 2.2s linear infinite }
-
-    /* Cards */
-    .card{ background:#fff; border:1px solid rgba(226,232,240,1); border-radius:28px }
-
-    /* Lightbox */
-    .lightbox{ position:fixed; inset:0; display:none; background: rgba(0,0,0,.88); z-index:70; align-items:center; justify-content:center }
-    .lightbox.open{ display:flex }
-    .lightbox img{ max-width:92vw; max-height:88vh; border-radius:1rem; box-shadow:0 20px 60px rgba(0,0,0,.45) }
-
-    /* Command palette */
-    #cmd{ position: fixed; inset: 0; display:none; align-items: flex-start; justify-content: center; padding-top:12vh; background: rgba(14,17,22,.36); backdrop-filter: blur(6px); z-index:80 }
-    #cmd.open{ display:flex }
+    :root{--bg:#FAFBF9;--teal:#145247;--teal-light:#1a6b5a;--amber:#FAA805;--blue:#CDE0E4;--beige:#E8D9C9}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:#0e1116}
+    .glass{backdrop-filter:blur(14px);background:rgba(255,255,255,.85);border:1px solid rgba(203,213,225,.7);box-shadow:0 4px 30px rgba(0,0,0,.04)}
+    .spotlight{position:fixed;inset:0;pointer-events:none;background:radial-gradient(280px 280px at var(--mx,50%) var(--my,50%),rgba(250,168,5,.08),transparent 60%);z-index:20;mix-blend-mode:multiply}
+    #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--amber));width:0;z-index:60;box-shadow:0 0 14px rgba(250,168,5,.5)}
+    .hero-wrap{position:relative;min-height:94vh;background:linear-gradient(135deg,rgba(20,82,71,.03) 0%,transparent 40%,rgba(250,168,5,.03) 100%)}
+    .hero-orb{position:absolute;border-radius:999px;filter:blur(60px);opacity:.25}
+    .hero-orb.a{width:600px;height:600px;background:radial-gradient(circle,var(--amber),rgba(250,168,5,.02));top:-120px;left:-100px}
+    .hero-orb.b{width:500px;height:500px;background:radial-gradient(circle,var(--blue),rgba(205,224,228,.02));bottom:-100px;right:-80px}
+    .slider{position:relative;border-radius:24px;overflow:hidden}
+    .slider-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+    .slide{min-width:100%;position:relative}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.06);border-radius:50%;width:44px;height:44px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:all .2s}
+    .slider-btn:hover{background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+    .slider-btn.prev{left:.75rem}
+    .slider-btn.next{right:.75rem}
+    .slider-dots{position:absolute;bottom:1rem;left:0;right:0;display:flex;justify-content:center;gap:.5rem}
+    .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.5);border:2px solid rgba(255,255,255,.8);cursor:pointer;transition:all .3s}
+    .dot.active{background:var(--amber);border-color:var(--amber);width:28px}
+    #particles{position:absolute;inset:0;z-index:0}
+    .magnetic{position:relative;overflow:hidden;transition:transform .15s ease-out}
+    .magnetic span{position:relative;z-index:2}
+    .magnetic:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,168,5,.15),rgba(20,82,71,.15),rgba(250,168,5,.15));background-size:200% 100%;border-radius:inherit;z-index:1;opacity:0;transition:opacity .25s}
+    .magnetic:hover:after{opacity:1;animation:shimmer 2.2s linear infinite}
+    .card{background:#fff;border:1px solid rgba(226,232,240,.8);border-radius:20px;transition:all .3s ease}
+    .card:hover{border-color:rgba(20,82,71,.2);box-shadow:0 20px 60px rgba(20,82,71,.08)}
+    .section-fade{opacity:0;transform:translateY(30px);transition:all .7s ease-out}
+    .section-fade.visible{opacity:1;transform:translateY(0)}
+    .lightbox{position:fixed;inset:0;display:none;background:rgba(0,0,0,.9);z-index:70;align-items:center;justify-content:center}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:1rem;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+    #cmd{position:fixed;inset:0;display:none;align-items:flex-start;justify-content:center;padding-top:12vh;background:rgba(14,17,22,.4);backdrop-filter:blur(8px);z-index:80}
+    #cmd.open{display:flex}
+    .dept-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+    .timeline-line{position:absolute;left:23px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--teal),var(--amber),var(--teal))}
+    .timeline-dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--teal);background:#fff;position:relative;z-index:2;flex-shrink:0}
+    .timeline-dot.done{background:var(--teal)}
+    .timeline-dot.planned{background:var(--amber);border-color:var(--amber)}
+    .gradient-text{background:linear-gradient(135deg,var(--teal),var(--teal-light),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;border-radius:14px;background:var(--teal);padding:14px 28px;font-weight:700;color:#fff;box-shadow:0 4px 20px rgba(20,82,71,.25);transition:all .2s}
+    .btn-primary:hover{background:var(--teal-light);box-shadow:0 8px 30px rgba(20,82,71,.35);transform:translateY(-1px)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;border-radius:14px;border:2px solid rgba(20,82,71,.2);padding:13px 28px;font-weight:700;transition:all .2s}
+    .btn-secondary:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-1px)}
+    .stat-card{background:linear-gradient(135deg,#fff,rgba(205,224,228,.15));border:1px solid rgba(20,82,71,.1);border-radius:16px;padding:20px;text-align:center}
+    .value-card{background:linear-gradient(135deg,#fff 0%,rgba(205,224,228,.08) 100%);border:1px solid rgba(226,232,240,.8);border-radius:20px;padding:32px;transition:all .3s}
+    .value-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(20,82,71,.1);border-color:rgba(20,82,71,.15)}
+    .dept-card{background:#fff;border:1px solid rgba(226,232,240,.8);border-radius:24px;padding:32px;transition:all .3s;position:relative;overflow:hidden}
+    .dept-card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--amber));opacity:0;transition:opacity .3s}
+    .dept-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(20,82,71,.1)}
+    .dept-card:hover:before{opacity:1}
+    .need-card{background:linear-gradient(135deg,#fff,rgba(250,168,5,.03));border:2px solid rgba(250,168,5,.15);border-radius:20px;padding:32px;text-align:center;transition:all .3s}
+    .need-card:hover{border-color:var(--amber);transform:translateY(-4px);box-shadow:0 20px 50px rgba(250,168,5,.12)}
+    .team-card{background:#fff;border:1px solid rgba(226,232,240,.8);border-radius:20px;overflow:hidden;transition:all .3s}
+    .team-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(20,82,71,.12)}
+    .cta-section{background:linear-gradient(135deg,var(--teal) 0%,#1a6b5a 50%,#0d3a30 100%);color:#fff;position:relative;overflow:hidden}
+    .cta-section:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 20%,rgba(250,168,5,.15),transparent);pointer-events:none}
   </style>
 </head>
-<body class="font-sans bg-[--bg] text-[--ink]">
+<body class="font-sans">
   <div id="progress"></div>
   <div class="spotlight" aria-hidden="true"></div>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header id="header" class="fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-7xl px-4">
-      <nav class="mt-4 rounded-2xl glass flex items-center justify-between px-4 py-3">
+      <nav class="mt-3 rounded-2xl glass flex items-center justify-between px-5 py-3">
         <a href="#top" class="flex items-center gap-3">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[--teal] text-white font-extrabold">HC</span>
-          <span class="text-lg font-bold tracking-tight">Healthy Community</span>
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[--teal] text-white font-black text-sm">HC</span>
+          <div class="leading-tight">
+            <span class="text-base font-bold tracking-tight block">Healthy Community</span>
+            <span class="text-[10px] text-slate-500 tracking-wide uppercase">Science . Health . Opportunity</span>
+          </div>
         </a>
-        <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-[--teal]">About</a>
-          <a href="#programs" class="hover:text-[--teal]">Programs</a>
-          <a href="#proof" class="hover:text-[--teal]">Proof</a>
-          <a href="#team" class="hover:text-[--teal]">Team</a>
-          <a href="#contact" class="hover:text-[--teal]">Contact</a>
-          <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-4 py-2 text-sm font-semibold text-white shadow-glow"><span>Donate</span></a>
+        <div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <a href="#about" class="hover:text-[--teal] transition">About</a>
+          <a href="#departments" class="hover:text-[--teal] transition">Departments</a>
+          <a href="#activities" class="hover:text-[--teal] transition">Activities</a>
+          <a href="#team" class="hover:text-[--teal] transition">Leadership</a>
+          <a href="#support" class="hover:text-[--teal] transition">Support Us</a>
+          <a href="#contact" class="hover:text-[--teal] transition">Contact</a>
+          <a href="#support" class="btn-primary !py-2.5 !px-5 !text-sm !rounded-xl">Donate Now</a>
         </div>
-        <button id="menuBtn" aria-label="Open Menu" class="md:hidden rounded-xl border border-slate-200 p-2">
+        <button id="menuBtn" aria-label="Open Menu" class="lg:hidden rounded-xl border border-slate-200 p-2 hover:bg-slate-50 transition">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </nav>
-      <div id="mobileMenu" class="md:hidden hidden glass rounded-2xl mx-1 mt-2 px-4 py-3">
-        <div class="grid gap-3 text-sm">
-          <a href="#about" class="py-2">About</a>
-          <a href="#programs" class="py-2">Programs</a>
-          <a href="#proof" class="py-2">Proof</a>
-          <a href="#team" class="py-2">Team</a>
-          <a href="#contact" class="py-2">Contact</a>
-          <a href="#donate" class="py-2 text-[--teal] font-semibold">Donate</a>
+      <div id="mobileMenu" class="lg:hidden hidden glass rounded-2xl mx-1 mt-2 px-5 py-4">
+        <div class="grid gap-1 text-sm font-medium">
+          <a href="#about" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">About</a>
+          <a href="#departments" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">Departments</a>
+          <a href="#activities" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">Activities</a>
+          <a href="#team" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">Leadership</a>
+          <a href="#support" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">Support Us</a>
+          <a href="#contact" class="py-2.5 px-3 rounded-lg hover:bg-slate-50">Contact</a>
+          <a href="#support" class="mt-2 btn-primary justify-center !text-sm">Donate Now</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO SUPER UI -->
-  <section id="top" class="hero-wrap relative overflow-hidden pt-28">
+  <!-- HERO -->
+  <section id="top" class="hero-wrap relative overflow-hidden pt-32 pb-16 lg:pt-36">
     <canvas id="particles"></canvas>
     <div class="hero-orb a animate-float"></div>
     <div class="hero-orb b animate-float" style="animation-delay:1.2s"></div>
-
     <div class="relative z-10">
-      <div class="mx-auto max-w-7xl px-4 pb-16 lg:pb-24">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p class="font-display text-[12px] tracking-[.35em] uppercase text-[--teal]">People • Planet • Dignity</p>
-            <h1 class="mt-3 font-display text-5xl md:text-7xl leading-[1.02]">
-              Healthy lives.
-              <span class="text-[--teal]">Sustainable planet.</span>
+            <div class="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-[--teal] shadow-sm mb-6">
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse2"></span>
+              Building Healthier Communities Across Ghana
+            </div>
+            <h1 class="font-display text-5xl md:text-6xl xl:text-7xl leading-[1.05] font-black">
+              Uniting Science,<br>Health <span class="gradient-text">&amp; Opportunity</span>
             </h1>
-            <p class="mt-5 text-lg text-slate-800 max-w-xl">
-              Free community screenings.
-              Practical eco-education.
-              Clear referrals.
+            <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-xl leading-relaxed">
+              Building stronger, healthier communities through community-based healthcare, economic empowerment, environmental education, and sustainable development.
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
-              <a href="#donate" class="magnetic inline-flex items-center gap-2 rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white shadow-glow"><span>Donate</span></a>
-              <a href="#contact" class="magnetic inline-flex items-center gap-2 rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]"><span>Volunteer</span></a>
+              <a href="#support" class="magnetic btn-primary text-base"><span>Support Our Mission</span></a>
+              <a href="#contact" class="magnetic btn-secondary text-base"><span>Volunteer With Us</span></a>
             </div>
-
-            <div class="mt-10 grid grid-cols-3 gap-4 max-w-lg">
-              <div class="card p-4 text-center">
-                <div class="text-2xl font-extrabold" data-counter="true" data-target="5000">0</div>
-                <div class="text-xs text-slate-600 mt-1">Screenings</div>
+            <div class="mt-12 grid grid-cols-3 gap-4 max-w-md">
+              <div class="stat-card">
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="5000">0</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">Health Screenings</div>
               </div>
-              <div class="card p-4 text-center">
-                <div class="text-2xl font-extrabold" data-counter="true" data-target="120">0</div>
-                <div class="text-xs text-slate-600 mt-1">Communities</div>
+              <div class="stat-card">
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="120">0</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">Communities Served</div>
               </div>
-              <div class="card p-4 text-center">
-                <div class="text-2xl font-extrabold" data-counter="true" data-target="300">0</div>
-                <div class="text-xs text-slate-600 mt-1">Volunteers</div>
+              <div class="stat-card">
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="300">0</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">Active Volunteers</div>
               </div>
             </div>
           </div>
-
           <div>
             <div class="relative">
-              <div class="absolute -inset-1 rounded-3xl opacity-60 bg-gradient-to-tr from-[--amber]/25 to-[--blue]/20 blur-2xl"></div>
-              <div class="relative slider border border-slate-200 shadow-2xl">
+              <div class="absolute -inset-2 rounded-3xl opacity-50 bg-gradient-to-tr from-[--amber]/20 to-[--blue]/20 blur-2xl"></div>
+              <div class="relative slider border border-white/40 shadow-2xl">
                 <div id="heroSlider" class="slider">
                   <div class="slider-track">
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Blood pressure checks on site.</p></div></div>
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Community screening station.</p></div></div>
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Glucose and BMI checks.</p></div></div>
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Vision screening booth.</p></div></div>
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Malaria RDT corner.</p></div></div>
-                    <div class="slide"><img class="w-full h-[520px] object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6"><div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent"><p class="text-sm text-white">Health counseling.</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Health screening outreach"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">Community blood pressure screening</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Community screening"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">Free health screening station</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="BMI checks"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">Glucose and BMI assessments</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Vision screening"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">Vision screening booth</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Malaria testing"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">Malaria rapid diagnostic testing</p></div></div>
+                    <div class="slide"><img class="w-full h-[480px] lg:h-[540px] object-cover" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1600" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Health counseling"><div class="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/70 via-black/30 to-transparent"><p class="text-sm text-white font-medium">One-on-one health counseling</p></div></div>
                   </div>
-                  <button class="slider-btn prev" type="button" aria-label="Previous" data-prev><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M15 19l-7-7 7-7'/></svg></button>
-                  <button class="slider-btn next" type="button" aria-label="Next" data-next><svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><path d='M9 5l7 7-7 7'/></svg></button>
+                  <button class="slider-btn prev" type="button" aria-label="Previous" data-prev><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg></button>
+                  <button class="slider-btn next" type="button" aria-label="Next" data-next><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
                   <div class="slider-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="curve py-24">
+  <!-- ABOUT: VISION & MISSION -->
+  <section id="about" class="py-24 lg:py-32">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="grid lg:grid-cols-2 gap-10 items-start">
-        <div class="space-y-6">
-          <h2 class="font-display text-4xl md:text-5xl">Vision</h2>
-          <p class="text-lg">Healthy lives and a sustainable planet for every community.</p>
-          <h2 class="font-display text-4xl md:text-5xl mt-6">Mission</h2>
-          <p class="text-lg">To provide free, accessible health screenings to underserved communities while empowering individuals with knowledge and tools for environmental sustainability.</p>
-        </div>
-        <div class="grid gap-6">
-          <div class="card p-8">
-            <h3 class="text-2xl font-bold">What we do</h3>
-            <p class="mt-2">Mobile clinics and community talks.
-              Quick checks. Clear steps. Real impact.</p>
-            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-              <span class="rounded-xl bg-white px-3 py-2">Blood Pressure</span>
-              <span class="rounded-xl bg-white px-3 py-2">Blood Sugar</span>
-              <span class="rounded-xl bg-white px-3 py-2">Vision</span>
-              <span class="rounded-xl bg-white px-3 py-2">BMI</span>
-              <span class="rounded-xl bg-white px-3 py-2">Malaria</span>
-              <span class="rounded-xl bg-white px-3 py-2">Eco Education</span>
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Who We Are</p>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-black">About Healthy Community</h2>
+        <p class="mt-4 text-lg text-slate-500">Uniting science, health, and opportunity to build stronger, healthier communities</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-8 section-fade">
+        <div class="card p-10 lg:p-12 border-l-4 border-l-[--teal]">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="dept-icon bg-[--blue]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[--teal]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             </div>
+            <h3 class="font-display text-3xl font-bold text-[--teal]">Our Vision</h3>
           </div>
-          <div class="card p-8 border-[--amber]/30">
-            <h3 class="text-2xl font-bold text-[--teal]">Your support matters</h3>
-            <p class="mt-2">Each gift fuels kits, test strips, and trees.
-              Give once or monthly.</p>
-            <a href="#donate" class="mt-5 inline-block rounded-xl border border-slate-300 px-5 py-3 font-semibold hover:border-[--teal]">Donate</a>
-          </div>
+          <p class="text-lg leading-relaxed text-slate-700">A healthy, economically empowered, and environmentally sustainable community where every individual has access to healthcare, clean surroundings, and opportunities for a better life.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROGRAMS: sticky timeline -->
-  <section id="programs" class="py-24 bg-[--beige]/25">
-    <div class="mx-auto max-w-7xl px-4">
-      <div class="text-center">
-        <h2 class="font-display text-4xl md:text-5xl">Programs</h2>
-        <p class="mt-3">Medical outreach and environmental action.</p>
-      </div>
-
-      <div class="mt-12 grid md:grid-cols-2 gap-8 timeline">
-        <div class="tick">
-          <div class="card p-8">
-            <div class="flex items-center gap-3">
-              <div class="h-11 w-11 rounded-2xl bg-[--blue] flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s6-4.5 6-10a6 6 0 0 0-12 0c0 5.5 6 10 6 10Z"/></svg></div>
-              <h3 class="text-2xl font-bold">Medical Outreach</h3>
+        <div class="card p-10 lg:p-12 border-l-4 border-l-[--amber]">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="dept-icon bg-[--beige]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[--amber]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <p class="mt-3">Free checks for blood pressure, blood sugar, vision, BMI, and malaria.
-              Quick triage. Fast referrals.</p>
-            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
-              <li>On-site counseling</li>
-              <li>Referral letters</li>
-              <li>Follow-up calls</li>
-              <li>Health cards</li>
-            </ul>
+            <h3 class="font-display text-3xl font-bold text-[--amber]">Our Mission</h3>
           </div>
-        </div>
-        <div class="tick">
-          <div class="card p-8">
-            <div class="flex items-center gap-3">
-              <div class="h-11 w-11 rounded-2xl bg-[--blue] flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M7 8c0 2.5 2 4.5 5 4.5S17 10.5 17 8c0-2.5-2-4.5-5-4.5S7 5.5 7 8Zm-3 9h16"/></svg></div>
-              <h3 class="text-2xl font-bold">Humanitarian & Environment</h3>
-            </div>
-            <p class="mt-3">WASH education, tree planting, cleanups.
-              Risk communication for outbreaks.</p>
-            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
-              <li>Waste sorting</li>
-              <li>Safe cooking</li>
-              <li>Water safety</li>
-              <li>Tree care</li>
-            </ul>
-          </div>
+          <p class="text-lg leading-relaxed text-slate-700">To improve health, reduce poverty, and protect the environment through community-based healthcare, economic empowerment, environmental education, and sustainable development programs.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY: 3D tilt grid -->
-  <section id="proof" class="py-24">
+  <!-- CORE VALUES -->
+  <section class="py-24 lg:py-28 bg-gradient-to-b from-[--blue]/15 to-transparent">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="text-center">
-        <h2 class="font-display text-4xl md:text-5xl">Proof of Work</h2>
-        <p class="mt-3">Images from our last outreach.</p>
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">What Drives Us</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Our Core Values</h2>
+        <p class="mt-4 text-lg text-slate-500">Five principles that guide everything we do</p>
       </div>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="gallery">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 1">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 2">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 3">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 4">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 5">
-        <img class="card cursor-zoom-in tilt-img" loading="lazy" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Outreach 6">
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team" class="py-24 bg-[--blue]/20">
-    <div class="mx-auto max-w-7xl px-4">
-      <div class="text-center">
-        <h2 class="font-display text-4xl md:text-5xl">Team</h2>
-        <p class="mt-3">People who make it happen.</p>
-      </div>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card p-6"><h3 class="text-xl font-bold">Bismark Dabuo</h3><p class="text-slate-600">Founder</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Daniel Gbati</h3><p class="text-slate-600">Co‑Founder</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Albin</h3><p class="text-slate-600">President</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Ali Raymond</h3><p class="text-slate-600">Vice President</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Emmanuella Avogo</h3><p class="text-slate-600">Secretary</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Ellen Frances Sankah</h3><p class="text-slate-600">Assistant Secretary</p></div>
-        <div class="card p-6"><h3 class="text-xl font-bold">Godwin Biwin</h3><p class="text-slate-600">Financial Secretary</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DONATE -->
-  <section id="donate" class="py-24">
-    <div class="mx-auto max-w-7xl px-4">
-      <div class="grid lg:grid-cols-2 gap-8 items-center">
-        <div class="card p-8">
-          <h3 class="text-3xl font-extrabold text-[--teal]">Give</h3>
-          <p class="mt-3">Your gift sends a mobile clinic to one more street.
-            You put test kits into trained hands.
-            You plant trees in the right soil.</p>
-          <div class="mt-6 flex flex-wrap gap-3 text-sm">
-            <a href="#" class="magnetic rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white">Give Once</a>
-            <a href="#" class="magnetic rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]">Give Monthly</a>
-            <a href="#contact" class="magnetic rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:border-[--teal]">Partner with us</a>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 section-fade">
+        <div class="value-card">
+          <div class="dept-icon bg-[--blue] mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[--teal]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
+          <h4 class="text-xl font-bold mb-3">Community Empowerment</h4>
+          <p class="text-slate-600 leading-relaxed">We believe lasting change happens when communities lead their own development and take ownership of solutions.</p>
         </div>
-        <div class="card p-8">
-          <h4 class="text-xl font-bold">Where funds go</h4>
-          <ul class="mt-4 space-y-3">
-            <li>• Test kits and consumables</li>
-            <li>• Transport and logistics</li>
-            <li>• Volunteer training</li>
-            <li>• Trees and cleanup tools</li>
+        <div class="value-card">
+          <div class="dept-icon bg-[--beige] mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[--amber]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Equity &amp; Inclusion</h4>
+          <p class="text-slate-600 leading-relaxed">We are committed to reaching vulnerable and underserved populations without discrimination.</p>
+        </div>
+        <div class="value-card">
+          <div class="dept-icon bg-green-100 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Prevention &amp; Sustainability</h4>
+          <p class="text-slate-600 leading-relaxed">We focus on long-term solutions that prevent disease, reduce poverty, and protect the environment.</p>
+        </div>
+        <div class="value-card">
+          <div class="dept-icon bg-blue-100 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Integrity &amp; Accountability</h4>
+          <p class="text-slate-600 leading-relaxed">We operate with honesty, transparency, and responsibility to the communities and partners we serve.</p>
+        </div>
+        <div class="value-card sm:col-span-2 lg:col-span-1">
+          <div class="dept-icon bg-purple-100 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Collaboration &amp; Partnership</h4>
+          <p class="text-slate-600 leading-relaxed">We work with local leaders, institutions, NGOs and partners to create lasting and meaningful impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPARTMENTS -->
+  <section id="departments" class="py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Our Structure</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Departments</h2>
+        <p class="mt-4 text-lg text-slate-500">Six specialized units working together for community transformation</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-fade">
+        <!-- Health & Well-being -->
+        <div class="dept-card">
+          <div class="dept-icon bg-red-50 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Health &amp; Well-being</h4>
+          <p class="text-slate-500 text-sm mb-4">Improving community health and access to healthcare</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-[--teal] mt-0.5 flex-shrink-0">&bull;</span>Community health screenings</li>
+            <li class="flex items-start gap-2"><span class="text-[--teal] mt-0.5 flex-shrink-0">&bull;</span>Maternal and child health programs</li>
+            <li class="flex items-start gap-2"><span class="text-[--teal] mt-0.5 flex-shrink-0">&bull;</span>Disease prevention campaigns</li>
+            <li class="flex items-start gap-2"><span class="text-[--teal] mt-0.5 flex-shrink-0">&bull;</span>Mental health awareness</li>
+            <li class="flex items-start gap-2"><span class="text-[--teal] mt-0.5 flex-shrink-0">&bull;</span>Health education in schools &amp; communities</li>
+          </ul>
+        </div>
+        <!-- Economic Empowerment -->
+        <div class="dept-card">
+          <div class="dept-icon bg-amber-50 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Economic Empowerment</h4>
+          <p class="text-slate-500 text-sm mb-4">Reducing poverty through skills and income opportunities</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-[--amber] mt-0.5 flex-shrink-0">&bull;</span>Vocational and skills training</li>
+            <li class="flex items-start gap-2"><span class="text-[--amber] mt-0.5 flex-shrink-0">&bull;</span>Entrepreneurship support</li>
+            <li class="flex items-start gap-2"><span class="text-[--amber] mt-0.5 flex-shrink-0">&bull;</span>Financial literacy programs</li>
+            <li class="flex items-start gap-2"><span class="text-[--amber] mt-0.5 flex-shrink-0">&bull;</span>Women and youth empowerment</li>
+          </ul>
+        </div>
+        <!-- Environmental Sustainability -->
+        <div class="dept-card">
+          <div class="dept-icon bg-green-50 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Environmental Sustainability</h4>
+          <p class="text-slate-500 text-sm mb-4">Promoting a clean, safe, and climate-resilient environment</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&bull;</span>Community sanitation campaigns</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&bull;</span>Clean water and hygiene programs</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&bull;</span>Tree planting and climate awareness</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&bull;</span>Waste management and recycling</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5 flex-shrink-0">&bull;</span>Sustainable agriculture training</li>
+          </ul>
+        </div>
+        <!-- Research, Monitoring & Evaluation -->
+        <div class="dept-card">
+          <div class="dept-icon bg-indigo-50 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Research, Monitoring &amp; Evaluation</h4>
+          <p class="text-slate-500 text-sm mb-4">Ensuring programs are evidence-based and impactful</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-indigo-600 mt-0.5 flex-shrink-0">&bull;</span>Community needs assessments</li>
+            <li class="flex items-start gap-2"><span class="text-indigo-600 mt-0.5 flex-shrink-0">&bull;</span>Data collection and analysis</li>
+            <li class="flex items-start gap-2"><span class="text-indigo-600 mt-0.5 flex-shrink-0">&bull;</span>Program impact evaluation</li>
+            <li class="flex items-start gap-2"><span class="text-indigo-600 mt-0.5 flex-shrink-0">&bull;</span>Research partnerships &amp; literature</li>
+            <li class="flex items-start gap-2"><span class="text-indigo-600 mt-0.5 flex-shrink-0">&bull;</span>Reporting to donors and partners</li>
+          </ul>
+        </div>
+        <!-- Partnerships & Community Engagement -->
+        <div class="dept-card">
+          <div class="dept-icon bg-sky-50 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Partnerships &amp; Community Engagement</h4>
+          <p class="text-slate-500 text-sm mb-4">Building relationships and mobilizing participation</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-sky-600 mt-0.5 flex-shrink-0">&bull;</span>Community outreach and mobilization</li>
+            <li class="flex items-start gap-2"><span class="text-sky-600 mt-0.5 flex-shrink-0">&bull;</span>Partnerships with leaders, NGOs, government</li>
+            <li class="flex items-start gap-2"><span class="text-sky-600 mt-0.5 flex-shrink-0">&bull;</span>Volunteer coordination</li>
+            <li class="flex items-start gap-2"><span class="text-sky-600 mt-0.5 flex-shrink-0">&bull;</span>Public awareness campaigns</li>
+          </ul>
+        </div>
+        <!-- Administration & Finance -->
+        <div class="dept-card">
+          <div class="dept-icon bg-slate-100 mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-2">Administration &amp; Finance</h4>
+          <p class="text-slate-500 text-sm mb-4">Operations, finance, and organizational management</p>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-slate-500 mt-0.5 flex-shrink-0">&bull;</span>Budgeting and accounting</li>
+            <li class="flex items-start gap-2"><span class="text-slate-500 mt-0.5 flex-shrink-0">&bull;</span>Human resource management</li>
+            <li class="flex items-start gap-2"><span class="text-slate-500 mt-0.5 flex-shrink-0">&bull;</span>Logistics and procurement</li>
+            <li class="flex items-start gap-2"><span class="text-slate-500 mt-0.5 flex-shrink-0">&bull;</span>Compliance and reporting</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-24 bg-[--beige]/25">
+  <!-- ACTIVITIES -->
+  <section id="activities" class="py-24 lg:py-32 bg-gradient-to-b from-[--beige]/20 to-transparent">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="text-center">
-        <h2 class="font-display text-4xl md:text-5xl">Volunteer or Contact</h2>
-        <p class="mt-3">Tell us where you can help. We will reach out.</p>
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Our Impact</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Activities &amp; Programs</h2>
+        <p class="mt-4 text-lg text-slate-500">What we have accomplished and where we are headed next</p>
       </div>
-      <form class="mt-10 max-w-3xl mx-auto card p-6 md:p-8 grid md:grid-cols-2 gap-4" action="https://formspree.io/f/your-id" method="POST">
-        <div class="md:col-span-1 grid gap-3">
-          <label class="text-sm text-slate-600">Full name</label>
-          <input required name="name" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Your name" />
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Activities Done -->
+        <div class="section-fade">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="dept-icon bg-green-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Activities Completed</h3>
+          </div>
+          <div class="relative pl-10">
+            <div class="timeline-line"></div>
+            <div class="space-y-8">
+              <div class="relative flex gap-4">
+                <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1">
+                  <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
+                  <h4 class="text-lg font-bold">Free Health Screening for the Aged</h4>
+                  <p class="text-slate-500 text-sm mt-1">Kpandai District</p>
+                  <p class="text-slate-600 mt-2">Comprehensive health screening program targeting elderly community members in the Kpandai District, providing free blood pressure, glucose, and general health checks.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1">
+                  <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
+                  <h4 class="text-lg font-bold">Hepatitis B Health Education</h4>
+                  <p class="text-slate-500 text-sm mt-1">Kpandai District</p>
+                  <p class="text-slate-600 mt-2">Health education initiative focused on Hepatitis B virus awareness, prevention, and treatment options for middle-aged community members.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1">
+                  <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
+                  <h4 class="text-lg font-bold">Cervical Cancer Awareness</h4>
+                  <p class="text-slate-500 text-sm mt-1">Tamale Technical University (Zoom)</p>
+                  <p class="text-slate-600 mt-2">Virtual health education session on cervical cancer awareness, screening importance, and prevention strategies for university students and staff.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="md:col-span-1 grid gap-3">
-          <label class="text-sm text-slate-600">Email</label>
-          <input required type="email" name="email" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="you@email.com" />
+
+        <!-- Activities Aimed At -->
+        <div class="section-fade">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="dept-icon bg-amber-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Upcoming Initiatives</h3>
+          </div>
+          <div class="relative pl-10">
+            <div class="timeline-line" style="background:linear-gradient(to bottom, var(--amber), rgba(250,168,5,.2))"></div>
+            <div class="space-y-8">
+              <div class="relative flex gap-4">
+                <div class="timeline-dot planned absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1 border-[--amber]/20">
+                  <div class="inline-block rounded-full bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 mb-3">Planned</div>
+                  <h4 class="text-lg font-bold">Rural Community Health Screenings</h4>
+                  <p class="text-slate-600 mt-2">Expanding community health screening programs to rural areas across the Northern Region of Ghana.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot planned absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1 border-[--amber]/20">
+                  <div class="inline-block rounded-full bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 mb-3">Planned</div>
+                  <h4 class="text-lg font-bold">Tree Planting &amp; Climate Awareness</h4>
+                  <p class="text-slate-600 mt-2">Environmental programmes in Greater Accra and other major cities to combat climate change through tree planting and awareness.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot planned absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1 border-[--amber]/20">
+                  <div class="inline-block rounded-full bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 mb-3">Planned</div>
+                  <h4 class="text-lg font-bold">Waste Management &amp; Recycling</h4>
+                  <p class="text-slate-600 mt-2">Launching a comprehensive waste management and recycling initiative across communities in Ghana.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot planned absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1 border-[--amber]/20">
+                  <div class="inline-block rounded-full bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 mb-3">Planned</div>
+                  <h4 class="text-lg font-bold">NGO &amp; Government Partnerships</h4>
+                  <p class="text-slate-600 mt-2">Partnering with NGOs and Government bodies for comprehensive community needs assessment and joint programs.</p>
+                </div>
+              </div>
+              <div class="relative flex gap-4">
+                <div class="timeline-dot planned absolute left-[-33px] top-1.5"></div>
+                <div class="card p-6 flex-1 border-[--amber]/20">
+                  <div class="inline-block rounded-full bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 mb-3">Planned</div>
+                  <h4 class="text-lg font-bold">School Health Education Programs</h4>
+                  <p class="text-slate-600 mt-2">Bringing health education directly to schools and community centers across Ghana.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="md:col-span-1 grid gap-3">
-          <label class="text-sm text-slate-600">Phone</label>
-          <input name="phone" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Optional" />
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="py-24">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">In The Field</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Our Work in Action</h2>
+        <p class="mt-4 text-lg text-slate-500">Images from our community outreach programmes</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 section-fade" id="galleryGrid">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1_wKAzCzsTBxh7f-uDaPqLYfJQzbxm0VO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Community health screening">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1Lu_zOgmEAYA0KvXH4SwZ4FOcxB--U9eO" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Free health screening station">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1o1e_3qq07xdLDZweFCacYJy_oL5YuYMx" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Glucose and BMI checks">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=1TuVDJCZu0_c0DxIA2wvEkksPyWkvM4N_" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Vision screening booth">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=10K0a5GIltwDCTXc7Dkz9l1_NvjfuKYMP" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Malaria rapid testing">
+        <img class="card cursor-zoom-in hover:scale-[1.02] transition-transform duration-300 h-64 object-cover w-full" loading="lazy" src="https://drive.google.com/thumbnail?id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN&sz=w1200" data-fallback="https://drive.google.com/uc?export=download&id=13w7qxUc3WPAPMqhuOsLX9-8NJjPmtYYN" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="Health counseling session">
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP TEAM -->
+  <section id="team" class="py-24 lg:py-32 bg-gradient-to-b from-[--blue]/15 to-transparent">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Our People</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Leadership Team</h2>
+        <p class="mt-4 text-lg text-slate-500">Dedicated professionals driving community transformation across Ghana</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 section-fade">
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--teal] to-[--teal-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">BD</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Bismark Dabuo</h4>
+            <p class="text-[--teal] font-semibold text-sm">Founder</p>
+            <p class="text-slate-500 text-sm mt-2">Visionary leader driving the mission to build healthier communities across Ghana.</p>
+          </div>
         </div>
-        <div class="md:col-span-1 grid gap-3">
-          <label class="text-sm text-slate-600">City / Country</label>
-          <input name="location" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Where you are" />
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--teal] to-[--teal-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">DG</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Daniel Gbati</h4>
+            <p class="text-[--teal] font-semibold text-sm">Co-Founder</p>
+            <p class="text-slate-500 text-sm mt-2">Pioneering partner in establishing HC and its transformative programs.</p>
+          </div>
         </div>
-        <div class="md:col-span-2 grid gap-3">
-          <label class="text-sm text-slate-600">How you want to help</label>
-          <textarea required name="message" rows="4" class="rounded-xl bg-white border border-slate-200 px-4 py-3 outline-none focus:border-[--teal]" placeholder="Screenings, logistics, funding, media, cleanup, etc."></textarea>
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--teal] to-[--teal-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">A</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Albin</h4>
+            <p class="text-[--teal] font-semibold text-sm">President</p>
+            <p class="text-slate-500 text-sm mt-2">Leading strategic direction and organizational governance.</p>
+          </div>
         </div>
-        <div class="md:col-span-2 flex items-center justify-between">
-          <div class="text-xs text-slate-500">By submitting, you agree to be contacted.</div>
-          <button class="magnetic rounded-xl bg-[--teal] px-6 py-3 font-semibold text-white" type="submit"><span>Send</span></button>
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--teal] to-[--teal-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">AR</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Ali Raymond</h4>
+            <p class="text-[--teal] font-semibold text-sm">Vice President</p>
+            <p class="text-slate-500 text-sm mt-2">Supporting leadership and coordinating community initiatives.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--amber] to-[--amber-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">EA</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Emmanuella Avogo</h4>
+            <p class="text-[--amber] font-semibold text-sm">Secretary</p>
+            <p class="text-slate-500 text-sm mt-2">Managing communications and organizational records.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="h-48 bg-gradient-to-br from-[--amber] to-[--amber-light] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">ES</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Ellen Frances Sankah</h4>
+            <p class="text-[--amber] font-semibold text-sm">Assistant Secretary</p>
+            <p class="text-slate-500 text-sm mt-2">Supporting administrative operations and team coordination.</p>
+          </div>
+        </div>
+        <div class="team-card sm:col-span-2 lg:col-span-2">
+          <div class="h-48 bg-gradient-to-br from-[--teal] via-[--teal-light] to-[--amber] flex items-center justify-center">
+            <div class="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center">
+              <span class="text-4xl font-black text-white">GB</span>
+            </div>
+          </div>
+          <div class="p-5">
+            <h4 class="text-lg font-bold">Godwin Biwin</h4>
+            <p class="text-[--teal] font-semibold text-sm">Financial Secretary</p>
+            <p class="text-slate-500 text-sm mt-2">Overseeing financial management, budgeting, and ensuring transparent stewardship of resources and donor funds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT / CALL TO ACTION -->
+  <section id="support" class="cta-section py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-4 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Make A Difference</p>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-black">Support Our Mission</h2>
+        <p class="mt-4 text-lg text-white/80">Every contribution brings us closer to a healthier, more empowered community. Here is how you can help.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 section-fade">
+        <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-8 text-center hover:bg-white/15 transition">
+          <div class="w-16 h-16 rounded-2xl bg-[--amber] flex items-center justify-center mx-auto mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Financial Support</h4>
+          <p class="text-white/70 mb-6">Fund mobile clinics, test kits, volunteer training, and community programs. Every donation makes a direct impact.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-[--amber] px-6 py-3 font-bold text-white hover:brightness-110 transition">Donate Now</a>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-8 text-center hover:bg-white/15 transition">
+          <div class="w-16 h-16 rounded-2xl bg-[--amber] flex items-center justify-center mx-auto mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Materials &amp; Logistics</h4>
+          <p class="text-white/70 mb-6">We need seedlings, dustbins, brooms, shovels, wheelbarrows, laptops, and other supplies for our programs.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-6 py-3 font-bold text-white hover:bg-white/10 transition">Contribute Items</a>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-8 text-center hover:bg-white/15 transition">
+          <div class="w-16 h-16 rounded-2xl bg-[--amber] flex items-center justify-center mx-auto mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-bold mb-3">Human Labor</h4>
+          <p class="text-white/70 mb-6">Join us as a volunteer. Lend your skills, time, and energy to make a real difference in communities across Ghana.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-6 py-3 font-bold text-white hover:bg-white/10 transition">Volunteer Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 lg:py-32">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="text-center max-w-3xl mx-auto mb-16 section-fade">
+        <p class="text-sm font-bold tracking-[.2em] uppercase text-[--amber] mb-4">Get In Touch</p>
+        <h2 class="font-display text-4xl md:text-5xl font-black">Contact Us</h2>
+        <p class="mt-4 text-lg text-slate-500">Whether you want to volunteer, donate, or partner with us, we would love to hear from you.</p>
+      </div>
+      <form class="max-w-3xl mx-auto card p-8 md:p-10 grid md:grid-cols-2 gap-5 section-fade" action="https://formspree.io/f/your-id" method="POST">
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Full Name</label>
+          <input required name="name" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="Your full name" />
+        </div>
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Email Address</label>
+          <input required type="email" name="email" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="you@email.com" />
+        </div>
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Phone Number</label>
+          <input name="phone" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="Optional" />
+        </div>
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">City / Country</label>
+          <input name="location" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="Where you are based" />
+        </div>
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Type of Support</label>
+          <select name="support_type" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition">
+            <option value="">Select an option</option>
+            <option>Financial Donation</option>
+            <option>Material Donation</option>
+            <option>Volunteer</option>
+            <option>Partnership</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Organization (if any)</label>
+          <input name="organization" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="Optional" />
+        </div>
+        <div class="md:col-span-2 grid gap-2">
+          <label class="text-sm font-semibold text-slate-700">Your Message</label>
+          <textarea required name="message" rows="4" class="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10 transition" placeholder="Tell us how you would like to help or any questions you have..."></textarea>
+        </div>
+        <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+          <p class="text-xs text-slate-400">By submitting, you agree to be contacted by Healthy Community.</p>
+          <button class="magnetic btn-primary" type="submit"><span>Send Message</span></button>
         </div>
       </form>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="pt-10 pb-16 border-t border-slate-200">
+  <footer class="bg-brand-ink text-white pt-16 pb-8" style="background:#0E1116">
     <div class="mx-auto max-w-7xl px-4">
-      <div class="grid md:grid-cols-4 gap-6 items-start">
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-2">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[--teal] text-white font-extrabold">HC</span>
-            <span class="font-semibold">Healthy Community</span>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/10">
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[--teal] text-white font-black text-sm">HC</span>
+            <span class="text-lg font-bold">Healthy Community</span>
           </div>
-          <p class="mt-2 text-sm text-slate-600 max-w-sm">Healthy lives and a sustainable planet for every community.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">Uniting science, health, and opportunity to build stronger, healthier communities where every individual thrives.</p>
         </div>
-        <div class="text-sm text-slate-600">
-          <p class="text-slate-900 font-semibold mb-2">Links</p>
-          <p><a href="#about" class="hover:text-[--teal]">About</a></p>
-          <p><a href="#programs" class="hover:text-[--teal]">Programs</a></p>
-          <p><a href="#donate" class="hover:text-[--teal]">Donate</a></p>
+        <div>
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">Quick Links</h5>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+            <li><a href="#departments" class="hover:text-white transition">Our Departments</a></li>
+            <li><a href="#activities" class="hover:text-white transition">Activities</a></li>
+            <li><a href="#team" class="hover:text-white transition">Leadership</a></li>
+          </ul>
         </div>
-        <div class="text-sm text-slate-600">
-          <p class="text-slate-900 font-semibold mb-2">Contact</p>
-          <p>Email: hello@healthycommunity.org</p>
-          <p>Social: Facebook · Instagram</p>
+        <div>
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">Get Involved</h5>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li><a href="#support" class="hover:text-white transition">Donate</a></li>
+            <li><a href="#contact" class="hover:text-white transition">Volunteer</a></li>
+            <li><a href="#contact" class="hover:text-white transition">Partner With Us</a></li>
+            <li><a href="#contact" class="hover:text-white transition">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">Connect</h5>
+          <ul class="space-y-2 text-sm text-slate-400">
+            <li>Email: hello@healthycommunity.org</li>
+            <li>Location: Ghana</li>
+          </ul>
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[--teal] transition" aria-label="Facebook">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[--teal] transition" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-[--teal] transition" aria-label="Twitter/X">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="mt-8 text-sm text-slate-500">© <span id="year"></span> Healthy Community. All rights reserved.</div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-500">&copy; <span id="year"></span> Healthy Community (HC). All rights reserved.</p>
+        <p class="text-xs text-slate-600">Uniting science, health, and opportunity for a better tomorrow.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="absolute top-6 right-6 text-white/80 hover:text-white text-4xl z-10" onclick="document.getElementById('lightbox').classList.remove('open')">&times;</button>
     <img id="lightboxImg" alt="Gallery image" />
   </div>
 
   <!-- Command palette -->
-  <div id="cmd"><div class="card w-[680px] max-w-[92vw] p-4">
-    <input id="cmdInput" placeholder="Type to jump: about, programs, donate…  (press / to open, esc to close)" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-[--teal]"/>
+  <div id="cmd"><div class="card w-[680px] max-w-[92vw] p-5">
+    <input id="cmdInput" placeholder="Type to jump: about, departments, activities, team, support, contact (press / to open)" class="w-full rounded-xl border border-slate-300 px-4 py-3.5 outline-none focus:border-[--teal] focus:ring-2 focus:ring-[--teal]/10"/>
   </div></div>
 
   <script>
     // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
     // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", ()=> mobileMenu.classList.toggle("hidden"));
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.add("hidden")));
 
     // Spotlight cursor
-    const sp = document.querySelector('.spotlight');
-    window.addEventListener('mousemove', (e)=>{
-      sp.style.setProperty('--mx', e.clientX+'px');
-      sp.style.setProperty('--my', e.clientY+'px');
+    const sp = document.querySelector(".spotlight");
+    window.addEventListener("mousemove", (e)=>{
+      sp.style.setProperty("--mx", e.clientX+"px");
+      sp.style.setProperty("--my", e.clientY+"px");
     });
 
     // Scroll progress
-    const progress = document.getElementById('progress');
+    const progress = document.getElementById("progress");
     const setProgress = () => {
       const h = document.documentElement;
       const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-      progress.style.width = scrolled + '%';
+      progress.style.width = scrolled + "%";
     };
-    window.addEventListener('scroll', setProgress); setProgress();
+    window.addEventListener("scroll", setProgress); setProgress();
+
+    // Section fade-in on scroll
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    document.querySelectorAll(".section-fade").forEach(el => fadeObserver.observe(el));
 
     // Counters
     const counterObserver = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(!entry.isIntersecting) return;
-        const el = entry.target; const target = +el.dataset.target; let cur = 0; const step = Math.max(1, Math.floor(target/90));
-        const tick = () => { cur += step; if(cur >= target){ el.textContent = target.toLocaleString(); } else { el.textContent = cur.toLocaleString(); requestAnimationFrame(tick); } };
+        const el = entry.target; const target = +el.dataset.target; let cur = 0; const step = Math.max(1, Math.floor(target/80));
+        const tick = () => { cur += step; if(cur >= target){ el.textContent = target.toLocaleString()+"+"; } else { el.textContent = cur.toLocaleString(); requestAnimationFrame(tick); } };
         tick(); counterObserver.unobserve(el);
       })
     }, { threshold:.4 });
-    document.querySelectorAll('[data-counter="true"]').forEach(el=> counterObserver.observe(el));
+    document.querySelectorAll("[data-counter="true"]").forEach(el=> counterObserver.observe(el));
 
     // Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    document.getElementById('gallery').addEventListener('click', (e)=>{
-      if(e.target.tagName === 'IMG'){ lbImg.src = e.target.src; lb.classList.add('open'); }
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+    document.getElementById("galleryGrid").addEventListener("click", (e)=>{
+      if(e.target.tagName === "IMG"){ lbImg.src = e.target.src; lb.classList.add("open"); }
     });
-    lb.addEventListener('click', ()=> lb.classList.remove('open'));
-
-    // Tilt images
-    document.querySelectorAll('.tilt-img').forEach(img =>{
-      const w = 8; // tilt strength
-      img.addEventListener('mousemove', (e)=>{
-        const r = img.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        img.style.transform = `rotateX(${ -y*w }deg) rotateY(${ x*w }deg)`;
-      });
-      img.addEventListener('mouseleave', ()=> img.style.transform = 'rotateX(0) rotateY(0)');
-    });
+    lb.addEventListener("click", (e)=>{ if(e.target === lb) lb.classList.remove("open"); });
 
     // Magnetic buttons
-    document.querySelectorAll('.magnetic').forEach(btn=>{
-      btn.addEventListener('mousemove', (e)=>{
+    document.querySelectorAll(".magnetic").forEach(btn=>{
+      btn.addEventListener("mousemove", (e)=>{
         const r = btn.getBoundingClientRect();
         const x = (e.clientX - r.left - r.width/2)/8;
         const y = (e.clientY - r.top - r.height/2)/8;
-        btn.style.transform = `translate(${x}px,${y}px)`;
+        btn.style.transform = "translate("+x+"px,"+y+"px)";
       });
-      btn.addEventListener('mouseleave', ()=> btn.style.transform = 'translate(0,0)');
+      btn.addEventListener("mouseleave", ()=> btn.style.transform = "translate(0,0)");
     });
 
     // Particles background (hero)
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let W,H,points=[]; const COUNT = 60; const SPEED = .3;
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let W,H,points=[]; const COUNT = 50; const SPEED = .25;
     const rand = (a,b)=> a + Math.random()*(b-a);
     function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; points = Array.from({length:COUNT},()=>({x:rand(0,W), y:rand(0,H), vx:rand(-SPEED,SPEED), vy:rand(-SPEED,SPEED)})); }
-    function step(){ ctx.clearRect(0,0,W,H); ctx.fillStyle='rgba(20,82,71,.35)';
-      for(const p of points){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,2.2,0,Math.PI*2); ctx.fill(); }
-      for(let i=0;i<points.length;i++){ for(let j=i+1;j<points.length;j++){ const dx=points[i].x-points[j].x, dy=points[i].y-points[j].y; const d = Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle = `rgba(250,168,5,${1-d/120})`; ctx.lineWidth=.6; ctx.beginPath(); ctx.moveTo(points[i].x,points[i].y); ctx.lineTo(points[j].x,points[j].y); ctx.stroke(); } } }
+    function step(){ ctx.clearRect(0,0,W,H); ctx.fillStyle="rgba(20,82,71,.3)";
+      for(const p of points){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,2,0,Math.PI*2); ctx.fill(); }
+      for(let i=0;i<points.length;i++){ for(let j=i+1;j<points.length;j++){ const dx=points[i].x-points[j].x, dy=points[i].y-points[j].y; const d = Math.hypot(dx,dy); if(d<140){ ctx.strokeStyle = "rgba(250,168,5,"+(1-d/140)*0.4+")"; ctx.lineWidth=.5; ctx.beginPath(); ctx.moveTo(points[i].x,points[i].y); ctx.lineTo(points[j].x,points[j].y); ctx.stroke(); } } }
       requestAnimationFrame(step);
     }
-    resize(); step(); window.addEventListener('resize', resize);
+    resize(); step(); window.addEventListener("resize", resize);
 
     // Hero slider
     (function(){
-      const slider = document.getElementById('heroSlider'); if(!slider) return;
-      const track = slider.querySelector('.slider-track');
-      const slides = slider.querySelectorAll('.slide');
-      const dots = slider.querySelectorAll('.dot');
-      const btnPrev = slider.querySelector('[data-prev]');
-      const btnNext = slider.querySelector('[data-next]');
+      const slider = document.getElementById("heroSlider"); if(!slider) return;
+      const track = slider.querySelector(".slider-track");
+      const slides = slider.querySelectorAll(".slide");
+      const dots = slider.querySelectorAll(".dot");
+      const btnPrev = slider.querySelector("[data-prev]");
+      const btnNext = slider.querySelector("[data-next]");
       let i = 0, timer;
-      const go = (n)=>{ i=(n+slides.length)%slides.length; track.style.transform=`translateX(-${i*100}%)`; dots.forEach((d,idx)=> d.classList.toggle('active', idx===i)); };
+      const go = (n)=>{ i=(n+slides.length)%slides.length; track.style.transform="translateX(-"+i*100+"%)"; dots.forEach((d,idx)=> d.classList.toggle("active", idx===i)); };
       const next = ()=> go(i+1); const prev=()=>go(i-1);
-      btnNext.addEventListener('click', next); btnPrev.addEventListener('click', prev);
-      dots.forEach((d,idx)=> d.addEventListener('click', ()=> go(idx)));
+      btnNext.addEventListener("click", next); btnPrev.addEventListener("click", prev);
+      dots.forEach((d,idx)=> d.addEventListener("click", ()=> go(idx)));
       const play=()=> timer=setInterval(next,5000); const stop=()=>{if(timer) clearInterval(timer); timer=null};
-      slider.addEventListener('mouseenter', stop); slider.addEventListener('mouseleave', play);
-      // swipe
-      let sx=0; track.addEventListener('touchstart', e=>{sx=e.touches[0].clientX},{passive:true}); track.addEventListener('touchend', e=>{const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ dx<0?next():prev(); }},{passive:true});
+      slider.addEventListener("mouseenter", stop); slider.addEventListener("mouseleave", play);
+      let sx=0; track.addEventListener("touchstart", e=>{sx=e.touches[0].clientX},{passive:true}); track.addEventListener("touchend", e=>{const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ dx<0?next():prev(); }},{passive:true});
       play();
     })();
 
     // Command palette
-    const cmd = document.getElementById('cmd');
-    const cmdInput = document.getElementById('cmdInput');
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === '/'){ e.preventDefault(); cmd.classList.add('open'); cmdInput.focus(); }
-      if(e.key === 'Escape'){ cmd.classList.remove('open'); }
-      if(e.key === 'Enter' && cmd.classList.contains('open')){
+    const cmd = document.getElementById("cmd");
+    const cmdInput = document.getElementById("cmdInput");
+    window.addEventListener("keydown", (e)=>{
+      if(e.key === "/" && !e.target.matches("input,textarea,select")){ e.preventDefault(); cmd.classList.add("open"); cmdInput.focus(); cmdInput.value=""; }
+      if(e.key === "Escape"){ cmd.classList.remove("open"); }
+      if(e.key === "Enter" && cmd.classList.contains("open")){
         const q = cmdInput.value.trim().toLowerCase();
-        const map = { about:'#about', programs:'#programs', team:'#team', proof:'#proof', donate:'#donate', contact:'#contact' };
-        if(map[q]){ location.hash = map[q]; cmd.classList.remove('open'); }
+        const map = { about:"#about", departments:"#departments", activities:"#activities", team:"#team", support:"#support", donate:"#support", contact:"#contact", gallery:"#gallery", home:"#top" };
+        if(map[q]){ location.hash = map[q]; cmd.classList.remove("open"); }
       }
+    });
+    cmd.addEventListener("click", (e)=>{ if(e.target === cmd) cmd.classList.remove("open"); });
+
+    // Smooth nav scroll - hide header on scroll down, show on scroll up
+    let lastScroll = 0;
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      const cur = window.scrollY;
+      if (cur > lastScroll && cur > 100) {
+        header.style.transform = "translateY(-100%)";
+        header.style.transition = "transform .3s";
+      } else {
+        header.style.transform = "translateY(0)";
+      }
+      lastScroll = cur;
     });
   </script>
 </body>
