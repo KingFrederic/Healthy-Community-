@@ -43,8 +43,8 @@
     .slider{position:relative;border-radius:24px;overflow:hidden}
     .slider-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1)}
     .slide{min-width:100%;position:relative}
-    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.06);border-radius:50%;width:44px;height:44px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:all .2s}
-    .slider-btn:hover{background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.95);border:1px solid rgba(0,0,0,.06);border-radius:50%;width:48px;height:48px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.15);transition:all .2s;z-index:5}
+    .slider-btn:hover{background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.22);transform:translateY(-50%) scale(1.08)}
     .slider-btn.prev{left:.75rem}
     .slider-btn.next{right:.75rem}
     .slider-dots{position:absolute;bottom:1rem;left:0;right:0;display:flex;justify-content:center;gap:.5rem}
@@ -67,8 +67,8 @@
     .dept-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
     .timeline-line{position:absolute;left:23px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--teal),var(--amber),var(--teal))}
     .timeline-dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--teal);background:#fff;position:relative;z-index:2;flex-shrink:0}
-    .timeline-dot.done{background:var(--teal)}
-    .timeline-dot.planned{background:var(--amber);border-color:var(--amber)}
+    .timeline-dot.done{background:var(--teal);box-shadow:0 0 0 4px rgba(20,82,71,.15)}
+    .timeline-dot.planned{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 4px rgba(250,168,5,.15)}
     .gradient-text{background:linear-gradient(135deg,var(--teal),var(--teal-light),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .btn-primary{display:inline-flex;align-items:center;gap:8px;border-radius:14px;background:var(--teal);padding:14px 28px;font-weight:700;color:#fff;box-shadow:0 4px 20px rgba(20,82,71,.25);transition:all .2s}
     .btn-primary:hover{background:var(--teal-light);box-shadow:0 8px 30px rgba(20,82,71,.35);transform:translateY(-1px)}
@@ -87,6 +87,8 @@
     .team-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(20,82,71,.12)}
     .cta-section{background:linear-gradient(135deg,var(--teal) 0%,#1a6b5a 50%,#0d3a30 100%);color:#fff;position:relative;overflow:hidden}
     .cta-section:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 20%,rgba(250,168,5,.15),transparent);pointer-events:none}
+    img[src*="drive.google.com"]{background:linear-gradient(135deg,#e2e8f0,#f1f5f9);min-height:200px}
+    .slide img{background:linear-gradient(135deg,var(--blue),var(--beige))}
   </style>
 </head>
 <body class="font-sans">
@@ -156,15 +158,15 @@
             </div>
             <div class="mt-12 grid grid-cols-3 gap-4 max-w-md">
               <div class="stat-card">
-                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="5000">0</div>
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="5000">5,000+</div>
                 <div class="text-xs text-slate-500 mt-1 font-medium">Health Screenings</div>
               </div>
               <div class="stat-card">
-                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="120">0</div>
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="120">120+</div>
                 <div class="text-xs text-slate-500 mt-1 font-medium">Communities Served</div>
               </div>
               <div class="stat-card">
-                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="300">0</div>
+                <div class="text-2xl md:text-3xl font-black text-[--teal]" data-counter="true" data-target="300">300+</div>
                 <div class="text-xs text-slate-500 mt-1 font-medium">Active Volunteers</div>
               </div>
             </div>
@@ -396,7 +398,7 @@
             <div class="space-y-8">
               <div class="relative flex gap-4">
                 <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
-                <div class="card p-6 flex-1">
+                <div class="card p-6 flex-1 border-l-4 border-l-green-500 bg-gradient-to-r from-green-50/50 to-white">
                   <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
                   <h4 class="text-lg font-bold">Free Health Screening for the Aged</h4>
                   <p class="text-slate-500 text-sm mt-1">Kpandai District</p>
@@ -405,7 +407,7 @@
               </div>
               <div class="relative flex gap-4">
                 <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
-                <div class="card p-6 flex-1">
+                <div class="card p-6 flex-1 border-l-4 border-l-green-500 bg-gradient-to-r from-green-50/50 to-white">
                   <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
                   <h4 class="text-lg font-bold">Hepatitis B Health Education</h4>
                   <p class="text-slate-500 text-sm mt-1">Kpandai District</p>
@@ -414,7 +416,7 @@
               </div>
               <div class="relative flex gap-4">
                 <div class="timeline-dot done absolute left-[-33px] top-1.5"></div>
-                <div class="card p-6 flex-1">
+                <div class="card p-6 flex-1 border-l-4 border-l-green-500 bg-gradient-to-r from-green-50/50 to-white">
                   <div class="inline-block rounded-full bg-green-100 text-green-700 text-xs font-bold px-3 py-1 mb-3">Completed</div>
                   <h4 class="text-lg font-bold">Cervical Cancer Awareness</h4>
                   <p class="text-slate-500 text-sm mt-1">Tamale Technical University (Zoom)</p>
@@ -738,7 +740,7 @@
       </div>
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-sm text-slate-500">&copy; <span id="year"></span> Healthy Community (HC). All rights reserved.</p>
-        <p class="text-xs text-slate-600">Uniting science, health, and opportunity for a better tomorrow.</p>
+        <p class="text-xs text-slate-600">A registered community-based organization in Ghana. Uniting science, health, and opportunity for a better tomorrow.</p>
       </div>
     </div>
   </footer>
@@ -792,16 +794,27 @@
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
     document.querySelectorAll(".section-fade").forEach(el => fadeObserver.observe(el));
 
-    // Counters
+    // Counters - smooth easeOut animation, fallback values in HTML for no-JS
+    const counterEls = document.querySelectorAll('[data-counter="true"]');
+    counterEls.forEach(el => { el.textContent = "0"; });
     const counterObserver = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(!entry.isIntersecting) return;
-        const el = entry.target; const target = +el.dataset.target; let cur = 0; const step = Math.max(1, Math.floor(target/80));
-        const tick = () => { cur += step; if(cur >= target){ el.textContent = target.toLocaleString()+"+"; } else { el.textContent = cur.toLocaleString(); requestAnimationFrame(tick); } };
-        tick(); counterObserver.unobserve(el);
+        const el = entry.target; const target = +el.dataset.target;
+        const duration = 2000; const startTime = performance.now();
+        const easeOut = t => 1 - Math.pow(1 - t, 3);
+        const tick = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const cur = Math.floor(easeOut(progress) * target);
+          el.textContent = cur.toLocaleString() + (progress >= 1 ? "+" : "");
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
       })
-    }, { threshold:.4 });
-    document.querySelectorAll("[data-counter="true"]").forEach(el=> counterObserver.observe(el));
+    }, { threshold: 0.15 });
+    counterEls.forEach(el => counterObserver.observe(el));
 
     // Lightbox
     const lb = document.getElementById("lightbox");
